@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mac Kısayollarını Deneyerek Öğren – 60 İnteraktif Alıştırma | Kısayolcu</title>
+<meta name="description" content="Kopyala-yapıştırdan emoji paneline, Spotlight’tan pencere döşemeye: Mac kısayollarını tarayıcında tek tek dene. Bildiğini geç, ilerlemen kaydolsun.">
+<link rel="canonical" href="https://kisayolcu.gokhanazap.com/ogren.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:site_name" content="Kısayolcu">
+<meta property="og:url" content="https://kisayolcu.gokhanazap.com/ogren.html">
+<meta property="og:title" content="Mac Kısayollarını Deneyerek Öğren – 60 İnteraktif Alıştırma">
+<meta property="og:description" content="Kopyala-yapıştırdan emoji paneline, Spotlight’tan pencere döşemeye: Mac kısayollarını tarayıcında tek tek dene. Bildiğini geç, ilerlemen kaydolsun.">
+<meta property="og:image" content="https://kisayolcu.gokhanazap.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@gokhanazap0">
+<meta name="twitter:title" content="Mac Kısayollarını Deneyerek Öğren – 60 İnteraktif Alıştırma">
+<meta name="twitter:description" content="Kopyala-yapıştırdan emoji paneline, Spotlight’tan pencere döşemeye: Mac kısayollarını tarayıcında tek tek dene. Bildiğini geç, ilerlemen kaydolsun.">
+<meta name="twitter:image" content="https://kisayolcu.gokhanazap.com/assets/og.png">
+<meta name="theme-color" content="#f3eee4">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/ogren.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="index.html"><span class="logo-mark">⌘</span>kısayolcu</a>
+    <nav class="nav-links">
+      <a href="ogren.html" class="on keep">Öğren</a>
+      <a href="speedrun.html" class="keep">Speedrun</a>
+      <a href="kisayollar.html">Tüm kısayollar</a>
+      <a href="#" data-coffee class="coffee" aria-label="Kahve ısmarla">☕<span class="cl"> Kahve ısmarla</span></a>
+    </nav>
+  </div>
+</header>
+
+<div class="learn wrap">
+  <aside class="side" id="side">
+    <div class="side-top">
+      <div class="side-prog"><b id="pDone">0</b>/<span id="pTotal">0</span> tamam</div>
+      <div class="bar"><i id="pBar"></i></div>
+      <button class="btn btn-ghost btn-sm side-toggle" id="sideToggle" type="button" aria-expanded="false">Bölümler ▾</button>
+    </div>
+    <nav class="side-list" id="sideList"></nav>
+    <button class="reset" id="reset" type="button">İlerlemeyi sıfırla</button>
+  </aside>
+
+  <main class="stage-wrap">
+    <section class="stage card" id="stage">
+      <div class="stage-top">
+        <span class="pill" id="chapName"></span>
+        <span class="ch-dots" id="chDots" aria-hidden="true"></span>
+        <span class="muted stage-count" id="lessonCount"></span>
+      </div>
+      <div class="big-keys" id="bigKeys"></div>
+      <h1 class="h-display lesson-title" id="title"></h1>
+      <p class="lesson-desc" id="desc"></p>
+      <p class="tr-note" id="trNote" hidden></p>
+
+      <div class="task">
+        <div class="task-label">Görev</div>
+        <p class="task-text" id="task"></p>
+        <div class="practice" id="practice"></div>
+      </div>
+
+      <div class="status" id="status" aria-live="polite"></div>
+
+      <div class="actions">
+        <button class="btn btn-ghost btn-sm" id="prev" type="button">← Önceki</button>
+        <span class="grow"></span>
+        <button class="btn btn-sm" id="skip" type="button">Biliyorum, geç <span class="kbd-hint">esc</span></button>
+        <button class="btn btn-primary" id="next" type="button" hidden>Devam <kbd class="kc kc-mod"><span class="kc-s">↩</span></kbd></button>
+      </div>
+    </section>
+
+    <section class="finish card" id="finish" hidden>
+      <p class="eyebrow">Bitti!</p>
+      <h1 class="h-display">Artık fare sana muhtaç. 🎉</h1>
+      <p class="finish-stats" id="finishStats"></p>
+      <div class="finish-cta">
+        <a class="btn btn-primary" href="speedrun.html">⚡ Şimdi speedrun’da kendini test et</a>
+        <a class="btn" href="kisayollar.html">Tüm kısayol listesi</a>
+        <a class="btn btn-dark" href="#" data-coffee>☕ Kahve ısmarla</a>
+      </div>
+      <button class="reset" id="reset2" type="button">Baştan başla</button>
+    </section>
+
+    <div class="livebar">
+      <span class="muted">Şu an bastığın:</span>
+      <span id="live" class="live"><span class="muted">—</span></span>
+    </div>
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <span class="maker"><b>kısayolcu</b> · Yapan: <a href="https://x.com/gokhanazap0" target="_blank" rel="noopener">Gökhan Azap</a> · Kaynak: <a href="https://support.apple.com/tr-tr/102650" target="_blank" rel="noopener">Apple Destek ↗</a></span>
+    <span class="foot-links">
+      <a href="ogren.html">Öğren</a>
+      <a href="speedrun.html">Speedrun</a>
+      <a href="kisayollar.html">Tüm kısayollar</a>
+      <a href="#" data-coffee>☕ Kahve</a>
+    </span>
+  </div>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/core.js"></script>
+<script src="assets/ogren.js"></script>
+</body>
+</html>

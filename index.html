@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kısayolcu – Mac Klavye Kısayollarını Basarak Öğren</title>
+<meta name="description" content="Mac kısayollarını okuyarak değil, basarak öğren: @ işareti, emoji, ekran görüntüsü ve 120 kısayol. Sonra klavyeyle speedrun yap, süreni paylaş. Ücretsiz.">
+<link rel="canonical" href="https://kisayolcu.gokhanazap.com/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:site_name" content="Kısayolcu">
+<meta property="og:url" content="https://kisayolcu.gokhanazap.com/">
+<meta property="og:title" content="Kısayolcu – Mac Klavye Kısayollarını Basarak Öğren">
+<meta property="og:description" content="Mac kısayollarını okuyarak değil, basarak öğren: @ işareti, emoji, ekran görüntüsü ve 120 kısayol. Sonra klavyeyle speedrun yap, süreni paylaş. Ücretsiz.">
+<meta property="og:image" content="https://kisayolcu.gokhanazap.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@gokhanazap0">
+<meta name="twitter:title" content="Kısayolcu – Mac Klavye Kısayollarını Basarak Öğren">
+<meta name="twitter:description" content="Mac kısayollarını okuyarak değil, basarak öğren: @ işareti, emoji, ekran görüntüsü ve 120 kısayol. Sonra klavyeyle speedrun yap, süreni paylaş. Ücretsiz.">
+<meta name="twitter:image" content="https://kisayolcu.gokhanazap.com/assets/og.png">
+<meta name="theme-color" content="#f3eee4">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/landing.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Kısayolcu","url":"https://kisayolcu.gokhanazap.com/","inLanguage":"tr","applicationCategory":"EducationalApplication","operatingSystem":"macOS","description":"Mac klavye kısayollarını tarayıcıda basarak öğreten ücretsiz site ve klavye speedrun oyunu.","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"author":{"@type":"Person","name":"Gökhan Azap","url":"https://gokhanazap.com"}}
+</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="index.html"><span class="logo-mark">⌘</span>kısayolcu</a>
+    <nav class="nav-links">
+      <a href="ogren.html" class="keep">Öğren</a>
+      <a href="speedrun.html" class="keep">Speedrun</a>
+      <a href="kisayollar.html">Tüm kısayollar</a>
+      <a href="#" data-coffee class="coffee" aria-label="Kahve ısmarla">☕<span class="cl"> Kahve ısmarla</span></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div class="hero-copy">
+      <p class="eyebrow reveal" style="--d:0">Ücretsiz · Kurulum yok · Türkçe</p>
+      <h1 class="h-display hero-title reveal" style="--d:1">
+        MacBook’unu <s>fareyle</s> <em>kısayolla</em> kullan.
+      </h1>
+      <p class="hero-sub reveal" style="--d:2">
+        Kopyala-yapıştırdan emoji paneline, Spotlight’tan pencere döşemeye. En çok işine yarayacak
+        <b data-count="shortcuts">120</b> Mac kısayolunu tarayıcında <b>deneyerek</b> öğren. Bildiğini tek tuşla geç.
+      </p>
+      <div class="hero-cta reveal" style="--d:3" id="heroCta">
+        <a class="btn btn-primary" href="ogren.html">Öğrenmeye başla <kbd class="kc kc-mod"><span class="kc-s">↩</span></kbd></a>
+        <a class="btn" href="speedrun.html">⚡ Speedrun’a meydan oku</a>
+      </div>
+      <ul class="hero-stats reveal" style="--d:4">
+        <li><b data-count="shortcuts">0</b><span>kısayol</span></li>
+        <li><b data-count="lessons">0</b><span>alıştırma</span></li>
+        <li><b data-count="chapters">0</b><span>bölüm</span></li>
+      </ul>
+    </div>
+
+    <div class="playground card reveal" style="--d:2">
+      <div class="pg-head">
+        <span class="dots"><i></i><i></i><i></i></span>
+        <span class="pg-title">Bir kısayola bas 👇 ne işe yaradığını söyleyelim</span>
+      </div>
+      <div class="readout" id="readout" aria-live="off">
+        <div class="ro-keys" id="roKeys"></div>
+        <div class="ro-name" id="roName">…</div>
+        <div class="ro-desc" id="roDesc"></div>
+      </div>
+      <div class="kb" id="kb" aria-hidden="true"></div>
+      <p class="pg-foot">Türkçe Q düzeni · tuşlar fiziksel konuma göre yanar</p>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
+
+  <!-- GEMS -->
+  <section class="wrap section">
+    <div class="sec-head">
+      <p class="eyebrow">Bunları biliyor muydun?</p>
+      <h2 class="h-display sec-title">Bir saat uğraştığın şey,<br>aslında üç tuş.</h2>
+    </div>
+    <div class="gems" id="gems"></div>
+  </section>
+
+  <!-- HOW: canlı mini demo -->
+  <section class="wrap section how">
+    <div class="how-grid">
+      <div class="sec-head">
+        <p class="eyebrow">Nasıl çalışır</p>
+        <h2 class="h-display sec-title">Okumak yok. Basmak var.</h2>
+        <ol class="how-steps">
+          <li><b>Gör.</b> Tuşları ve ne işe yaradıklarını gösteriyoruz.</li>
+          <li><b>Dene.</b> Tarayıcın basmanı algılıyor; basmadan geçemezsin.</li>
+          <li><b>Bildiğini geç.</b> <span class="kbd-inline">esc</span> ile atla, vaktini bilmediklerine harca.</li>
+        </ol>
+      </div>
+      <div class="demo card" id="demo">
+        <p class="demo-label">Hemen dene 👇</p>
+        <p class="demo-task">Son kelimeyi tek hamlede sil: <span class="kc-row"><span class="kc-group"><kbd class="kc kc-mod"><span class="kc-s">⌥</span><span class="kc-l">option</span></kbd><kbd class="kc kc-mod"><span class="kc-s">⌫</span><span class="kc-l">delete</span></kbd></span></span></p>
+        <input id="demoInput" class="demo-input" type="text" value="Fareye elveda fare" spellcheck="false" autocomplete="off" aria-label="Deneme alanı">
+        <p class="demo-status" id="demoStatus" role="status">Kutuya tıkla, imleç sonda olsun, ⌥⌫’ye bas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTERS -->
+  <section class="wrap section">
+    <div class="sec-head row">
+      <div>
+        <p class="eyebrow">Müfredat</p>
+        <h2 class="h-display sec-title">Yedi bölüm, sıfırdan ustalığa.</h2>
+      </div>
+      <a class="btn btn-dark" href="ogren.html">Baştan başla →</a>
+    </div>
+    <div class="chapters" id="chapters"></div>
+  </section>
+
+  <!-- SPEEDRUN -->
+  <section class="speed">
+    <div class="wrap speed-in">
+      <div class="speed-copy">
+        <p class="eyebrow lcd-t">Speedrun modu</p>
+        <h2 class="h-display sec-title light">Fare yasak.<br>Saat işliyor.</h2>
+        <p class="speed-sub">Arka arkaya gelen görevleri sadece klavyeyle bitir. Fareye dokunursan +3 saniye ceza. Süreni paylaş, arkadaşın geçebilsin bakalım.</p>
+        <a class="btn btn-primary" href="speedrun.html">Speedrun’ı başlat ⚡</a>
+      </div>
+      <div class="speed-visual">
+        <div class="lcd" id="lcd">00:00.00</div>
+        <div class="share-card">
+          <div class="sc-top">⌨️ kısayolcu speedrun</div>
+          <div class="sc-time">18.42<span>sn</span></div>
+          <div class="sc-rank">Klavye Ninjası 🥷</div>
+          <div class="sc-meta">12 görev · 0 fare cezası</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="wrap section faq">
+    <div class="sec-head">
+      <p class="eyebrow">Sık sorulanlar</p>
+      <h2 class="h-display sec-title">Merak ettiklerin</h2>
+    </div>
+    <div class="faq-list">
+      <details open>
+        <summary>Neden uygulama değil de web sitesi?</summary>
+        <p>Çünkü link atıp “şunu bir dene” diyebilmek istiyoruz. İndirme, kurulum, izin yok. Tarayıcının göremediği birkaç kısayol için ileride küçük bir Mac uygulaması da gelebilir.</p>
+      </details>
+      <details>
+        <summary>Tarayıcı ⌘Space’e bastığımı nasıl anlıyor?</summary>
+        <p>Anlamıyor 🙂 Spotlight, ⌘Tab gibi kısayolları macOS tarayıcıdan önce yakalıyor. Biz de sonucuna bakıyoruz: sayfa odağı kaybedip geri döndüyse, emoji kutuya düştüyse, pencere boyutu değiştiyse… Hiç göremediklerimizde (ekran görüntüsü gibi) dürüstçe “Yaptım” butonu var.</p>
+      </details>
+      <details>
+        <summary>Türkçe Q klavyede farklı olanlar var mı?</summary>
+        <p>Var: @ ⌥Q, # ⌥3, ₺ ⌥T, [ ] ⌥8 / ⌥9, { } ⌥7 / ⌥0. Hepsini 🇹🇷 ile işaretledik. Harf tabanlı kısayolların çoğu iki düzende de aynı.</p>
+      </details>
+      <details>
+        <summary>Ücretli mi?</summary>
+        <p>Hayır, tamamen ücretsiz. Hesap da yok, reklam da yok. Hoşuna giderse aşağıdan bir kahve ısmarlayabilirsin ☕</p>
+      </details>
+      <details>
+        <summary>Verilerimi topluyor musunuz?</summary>
+        <p>Hayır. Hesap yok; ilerlemen ve en iyi speedrun süren sadece bu tarayıcıda saklanır.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- COFFEE -->
+  <section class="wrap">
+    <div class="coffee-band card">
+      <div>
+        <h2 class="h-display">Bir kısayol sana bir saat kazandırdıysa…</h2>
+        <p class="muted">…o saatin küçük bir kısmını kahveye çevirebilirsin. Site açık kalır, yeni bölümler gelir.</p>
+      </div>
+      <a class="btn btn-dark" href="#" data-coffee>☕ Bir kahve ısmarla</a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span class="maker"><b>kısayolcu</b> · Yapan: <a href="https://x.com/gokhanazap0" target="_blank" rel="noopener">Gökhan Azap</a> · Kaynak: <a href="https://support.apple.com/tr-tr/102650" target="_blank" rel="noopener">Apple Destek ↗</a></span>
+    <span class="foot-links">
+      <a href="ogren.html">Öğren</a>
+      <a href="speedrun.html">Speedrun</a>
+      <a href="kisayollar.html">Tüm kısayollar</a>
+      <a href="#" data-coffee>☕ Kahve</a>
+    </span>
+  </div>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/core.js"></script>
+<script src="assets/landing.js"></script>
+</body>
+</html>

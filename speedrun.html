@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speedrun: Mac’i Ne Kadar Hızlı Kullanıyorsun? | Kısayolcu</title>
+<meta name="description" content="12 görev, sadece klavye. Fareye dokunursan +3 saniye. Süreni paylaş, arkadaşın geçebilsin bakalım.">
+<link rel="canonical" href="https://kisayolcu.gokhanazap.com/speedrun.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:site_name" content="Kısayolcu">
+<meta property="og:url" content="https://kisayolcu.gokhanazap.com/speedrun.html">
+<meta property="og:title" content="Speedrun: Mac’i Ne Kadar Hızlı Kullanıyorsun?">
+<meta property="og:description" content="12 görev, sadece klavye. Fareye dokunursan +3 saniye. Süreni paylaş, arkadaşın geçebilsin bakalım.">
+<meta property="og:image" content="https://kisayolcu.gokhanazap.com/assets/og-speedrun.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@gokhanazap0">
+<meta name="twitter:title" content="Speedrun: Mac’i Ne Kadar Hızlı Kullanıyorsun?">
+<meta name="twitter:description" content="12 görev, sadece klavye. Fareye dokunursan +3 saniye. Süreni paylaş, arkadaşın geçebilsin bakalım.">
+<meta name="twitter:image" content="https://kisayolcu.gokhanazap.com/assets/og-speedrun.png">
+<meta name="theme-color" content="#121110">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/speedrun.css">
+</head>
+<body class="dark">
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="index.html"><span class="logo-mark">⌘</span>kısayolcu</a>
+    <nav class="nav-links">
+      <a href="ogren.html" class="keep">Öğren</a>
+      <a href="speedrun.html" class="on keep">Speedrun</a>
+      <a href="kisayollar.html">Tüm kısayollar</a>
+      <a href="#" data-coffee class="coffee" aria-label="Kahve ısmarla">☕<span class="cl"> Kahve ısmarla</span></a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap run">
+  <!-- INTRO -->
+  <section id="intro" class="screen">
+    <p class="eyebrow lcd-t">Speedrun</p>
+    <h1 class="h-display run-title">Mac’i ne kadar<br>hızlı kullanıyorsun?</h1>
+    <ul class="rules">
+      <li><b id="nTasks">12</b> görev, arka arkaya</li>
+      <li>🐭 Fareye dokunursan <b>+3 sn</b></li>
+      <li><span class="kbd-inline">esc</span> pas geç: <b>+10 sn</b></li>
+      <li>Takılırsan 8 sn sonra ipucu gelir (🟨)</li>
+    </ul>
+    <p class="best" id="bestLine"></p>
+    <button class="btn btn-primary go" id="start" type="button">Başlamak için <kbd class="kc kc-mod"><span class="kc-s">↩</span><span class="kc-l">return</span></kbd></button>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section id="count" class="screen" hidden>
+    <div class="countdown" id="countNum">3</div>
+  </section>
+
+  <!-- RUN -->
+  <section id="game" class="screen" hidden>
+    <div class="hud">
+      <div class="lcd" id="timer">00:00.00</div>
+      <div class="hud-side">
+        <span class="hud-pill" id="step">1/12</span>
+        <span class="hud-pill pen" id="pen">+0 sn</span>
+      </div>
+    </div>
+    <div class="track" id="track"></div>
+    <div class="task-card" id="taskCard">
+      <div class="task-n" id="taskN">Görev 1</div>
+      <div class="task-t" id="taskT"></div>
+      <div class="task-hint" id="taskHint"></div>
+    </div>
+    <div class="fields">
+      <label class="lbl" for="editor">Metin</label>
+      <textarea id="editor" spellcheck="false">Kısayol bilen yorulmaz, fareye uzanan kaybeder.</textarea>
+      <label class="lbl" for="box">Kutu</label>
+      <input id="box" type="text" spellcheck="false" autocomplete="off" placeholder="…">
+    </div>
+    <p class="run-foot"><span class="kbd-inline">esc</span> pas (+10 sn)</p>
+  </section>
+
+  <!-- RESULT -->
+  <section id="result" class="screen" hidden>
+    <div class="result-grid">
+      <div class="share-card big" id="card">
+        <div class="sc-top">⌨️ kısayolcu speedrun</div>
+        <div class="sc-time"><span id="rTime">0.00</span><small>sn</small></div>
+        <div class="sc-rank" id="rRank"></div>
+        <div class="sc-grid" id="rGrid" aria-label="Görev sonuçları"></div>
+        <div class="sc-meta" id="rMeta"></div>
+        <div class="sc-url">kisayolcu.gokhanazap.com</div>
+        <div class="sc-badge" id="rRecord" hidden>YENİ REKOR</div>
+      </div>
+      <div class="result-side">
+        <h2 class="h-display" id="rHead">Bitti!</h2>
+        <p class="muted" id="rBest"></p>
+        <p class="next-rank" id="rNext"></p>
+        <div class="share-row">
+          <a class="btn btn-primary" id="shareX" target="_blank" rel="noopener">𝕏’te paylaş</a>
+          <button class="btn" id="copy" type="button">Metni kopyala</button>
+          <button class="btn btn-ghost" id="again" type="button">Tekrar <kbd class="kc kc-mod"><span class="kc-s">↩</span></kbd></button>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="download" type="button">⬇︎ Kartı indir (PNG)</button>
+        <p class="tip">🟩 temiz · 🟨 ipucuyla · 🟥 pas</p>
+        <div class="missed" id="missed"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span class="maker"><b>kısayolcu</b> · Yapan: <a href="https://x.com/gokhanazap0" target="_blank" rel="noopener">Gökhan Azap</a> · Kaynak: <a href="https://support.apple.com/tr-tr/102650" target="_blank" rel="noopener">Apple Destek ↗</a></span>
+    <span class="foot-links">
+      <a href="ogren.html">Öğren</a>
+      <a href="speedrun.html">Speedrun</a>
+      <a href="kisayollar.html">Tüm kısayollar</a>
+      <a href="#" data-coffee>☕ Kahve</a>
+    </span>
+  </div>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/core.js"></script>
+<script src="assets/speedrun.js"></script>
+</body>
+</html>

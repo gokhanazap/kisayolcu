@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deneme sekmesi — Kısayolcu</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  body { min-height: 100vh; display: grid; place-items: center; text-align: center; padding: 24px; }
+  h1 { font-size: clamp(40px, 7vw, 80px); margin: 18px 0 12px; }
+  .big .kc { font-size: 30px; }
+  p { color: var(--ink-2); font-size: 18px; margin: 0 auto; max-width: 30em; }
+</style>
+</head>
+<body>
+  <main>
+    <div class="big" id="keys"></div>
+    <h1 class="h-display" id="t">Şimdi bu sekmeyi kapat</h1>
+    <p id="p">Fareye dokunma: ⌘W ile kapat, Kısayolcu sekmesine geri dönersin.</p>
+  </main>
+<script src="assets/core.js"></script>
+<script>
+  const m = new URLSearchParams(location.search).get('m');
+  document.getElementById('keys').innerHTML = KS.keyGroup(['cmd', 'w']);
+  if (m === 'reopen') {
+    document.getElementById('p').textContent = '⌘W ile kapat, sonra ⇧⌘T ile geri getir. Geri geldiğimde Kısayolcu anlayacak.';
+  } else if (m === 'link') {
+    document.getElementById('t').textContent = 'Arka planda açıldım 👋';
+    document.getElementById('p').textContent = '⌘ + tık sayesinde okuduğun sayfadan çıkmadın. Bu sekmeyi ⌘W ile kapatabilirsin.';
+  }
+  try { const bc = new BroadcastChannel('kisayolcu'); bc.postMessage('open'); addEventListener('pagehide', () => bc.postMessage('close')); } catch (_) {}
+</script>
+</body>
+</html>

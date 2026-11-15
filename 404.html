@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sayfa yok — Kısayolcu</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='14' fill='%23ff4f1a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='white' font-family='sans-serif'%3E%E2%8C%98%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  body { min-height: 100vh; display: grid; place-items: center; text-align: center; padding: 24px; }
+  h1 { font-size: clamp(44px, 8vw, 96px); margin: 22px 0 12px; }
+  p { color: var(--ink-2); font-size: 19px; margin: 0 auto 28px; max-width: 28em; }
+  .big .kc { font-size: 30px; }
+</style>
+</head>
+<body>
+  <main>
+    <div class="big"><span class="kc-group"><kbd class="kc kc-mod"><span class="kc-s">⌘</span><span class="kc-l">command</span></kbd><kbd class="kc"><span class="kc-s">Z</span></kbd></span></div>
+    <h1 class="h-display">Bu sayfa yok.</h1>
+    <p>Keşke ⌘Z ile geri alabilseydik. Ana sayfaya dönmek için <span class="kbd-inline">↩</span> bas.</p>
+    <a class="btn btn-primary" href="/">Ana sayfaya dön</a>
+  </main>
+<script>
+  addEventListener('keydown', e => { if (e.key === 'Enter' || (e.metaKey && e.key.toLowerCase() === 'z')) location.href = '/'; });
+</script>
+</body>
+</html>
