@@ -1,7 +1,7 @@
 /* Kısayolcu — ortak yardımcılar: tuş görselleri, kombinasyon eşleme, depolama, bildirim. */
 (function () {
-  // ☕ Kendi Buy Me a Coffee linkini buraya yaz:
-  const COFFEE_URL = 'https://buymeacoffee.com/kisayolcu';
+  // İletişim linki (X profili). Değiştirmek için sadece burayı düzenle.
+  const CONTACT_URL = 'https://x.com/gokhanazap0';
 
   const KEYS = {
     cmd: { s: '⌘', l: 'command', w: 'mod' },
@@ -167,8 +167,8 @@
     document.body.prepend(b);
   }
 
-  function wireCoffee() {
-    document.querySelectorAll('[data-coffee]').forEach(a => { a.href = COFFEE_URL; a.target = '_blank'; a.rel = 'noopener'; });
+  function wireContact() {
+    document.querySelectorAll('[data-contact]').forEach(a => { a.href = CONTACT_URL; a.target = '_blank'; a.rel = 'noopener'; });
   }
 
   // ── Değiştirici tuş takibi (OS kısayollarını sonucundan anlamak için) ──
@@ -213,7 +213,7 @@
     } catch (_) {}
   }
 
-  document.addEventListener('DOMContentLoaded', () => { wireCoffee(); macBanner(); });
+  document.addEventListener('DOMContentLoaded', () => { wireContact(); macBanner(); });
 
-  window.KS = { KEYS, keycap, keyGroup, renderShortcut, prettyText, esc, keyNames, parseCombo, matches, lookup, comboId, store, toast, isMac, COFFEE_URL, modRecent, beep, reduceMotion, sendToMac };
+  window.KS = { KEYS, keycap, keyGroup, renderShortcut, prettyText, esc, keyNames, parseCombo, matches, lookup, comboId, store, toast, isMac, CONTACT_URL, modRecent, beep, reduceMotion, sendToMac };
 })();

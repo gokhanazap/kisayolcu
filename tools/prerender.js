@@ -1,6 +1,6 @@
 // Kullanım: node tools/prerender.js . — kisayollar.html listesini data.js’ten statik HTML olarak yeniden üretir (SEO için)
 const fs = require('fs'), path = require('path');
-const dir = process.argv[2];
+const dir = path.resolve(process.argv[2] || '.');
 global.window = { addEventListener() {} }; global.document = { addEventListener() {}, querySelector() { return null; } };
 global.navigator = { platform: 'MacIntel' }; global.performance = { now: () => 0 };
 global.localStorage = { getItem() { return null; }, setItem() {} };
