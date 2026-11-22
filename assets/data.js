@@ -213,7 +213,7 @@ window.KS_LESSONS = [
 
   // Pencere
   { id: 'l-cmdtab', ch: 'pencere', sc: 'cmdtab', gorev: '⌘Tab ile başka bir uygulamaya geç, sonra yine ⌘Tab ile buraya dön.', practice: { kind: 'none' }, check: { type: 'away', mods: ['meta'] } },
-  { id: 'l-closewin', ch: 'pencere', sc: 'closewin', gorev: 'Butona bas, yeni bir deneme sekmesi açılacak. Orada ⌘W ile sekmeyi kapat.', practice: { kind: 'tab' }, check: { type: 'tabClose' } },
+  { id: 'l-closewin', ch: 'pencere', sc: 'closewin', gorev: '↩ ile deneme sekmesini aç, orada ⌘W ile kapat.', practice: { kind: 'tab' }, check: { type: 'tabClose' } },
   { id: 'l-newtab', ch: 'pencere', sc: 'newtab', gorev: '⌘T ile yeni sekme aç, sonra ⌘W ile kapatıp buraya dön.', practice: { kind: 'none' }, check: { type: 'away', mods: ['meta'] } },
   { id: 'l-hide', ch: 'pencere', sc: 'hide', gorev: '⌘H ile tarayıcıyı gizle, sonra ⌘Tab ile geri getir.', practice: { kind: 'none' }, check: { type: 'away', mods: ['meta'] } },
   { id: 'l-minimize', ch: 'pencere', sc: 'minimize', gorev: '⌘M ile pencereyi Dock’a küçült, sonra Dock’tan geri aç.', practice: { kind: 'none' }, check: { type: 'away', mods: ['meta'] } },
@@ -227,7 +227,7 @@ window.KS_LESSONS = [
   // Sistem
   { id: 'l-spotlight', ch: 'sistem', sc: 'spotlight', gorev: '⌘Space ile Spotlight’ı aç, “125*4” yaz (hesap makinesi!), Esc ile kapat.', practice: { kind: 'none' }, check: { type: 'away', mods: ['meta'] } },
   { id: 'l-ssarea', ch: 'sistem', sc: 'ssarea', gorev: '⇧⌘4 ile bir alan seç. Görüntü masaüstüne kaydedilecek. (Vazgeçmek için Esc.)', practice: { kind: 'none' }, check: { type: 'manual' } },
-  { id: 'l-ssclip', ch: 'sistem', sc: 'ssclip', gorev: '⌃⇧⌘4 ile bir alanı panoya al, sonra aşağıdaki kutuya tıklayıp ⌘V ile yapıştır.', practice: { kind: 'paste' }, check: { type: 'imagePaste' } },
+  { id: 'l-ssclip', ch: 'sistem', sc: 'ssclip', gorev: '⌃⇧⌘4 ile ekrandan bir alan seç (panoya gider), sonra ⌘V ile buraya yapıştır.', practice: { kind: 'paste' }, check: { type: 'imagePaste' } },
   { id: 'l-sswindow', ch: 'sistem', sc: 'sswindow', gorev: '⇧⌘4’e bas, sonra Space: imleç kameraya dönüşür. Bir pencereye tıkla.', practice: { kind: 'none' }, check: { type: 'manual' } },
   { id: 'l-sstool', ch: 'sistem', sc: 'sstool', gorev: '⇧⌘5 ile ekran görüntüsü ve ekran kaydı aracını aç. Esc ile kapat.', practice: { kind: 'none' }, check: { type: 'away', mods: ['meta'] } },
   { id: 'l-lock', ch: 'sistem', sc: 'lock', gorev: '⌃⌘Q ile ekranı kilitle, şifrenle geri dön. (Şimdi istemiyorsan esc ile geç.)', practice: { kind: 'none' }, check: { type: 'away', mods: ['ctrl', 'meta'] } },
@@ -236,7 +236,7 @@ window.KS_LESSONS = [
 
   // Tarayıcı
   { id: 'l-address', ch: 'tarayici', sc: 'address', gorev: '⌘L ile adres çubuğuna git, sonra sayfaya geri tıkla.', practice: { kind: 'none' }, check: { type: 'away', mods: ['meta'] } },
-  { id: 'l-reopen', ch: 'tarayici', sc: 'reopentab', gorev: 'Deneme sekmesini aç, ⌘W ile kapat, sonra ⇧⌘T ile geri getir.', practice: { kind: 'tab' }, check: { type: 'tabReopen' } },
+  { id: 'l-reopen', ch: 'tarayici', sc: 'reopentab', gorev: '↩ ile deneme sekmesini aç, ⌘W ile kapat, sonra ⇧⌘T ile geri getir.', practice: { kind: 'tab' }, check: { type: 'tabReopen' } },
   { id: 'l-reload', ch: 'tarayici', sc: 'reload', gorev: '⌘R ile sayfayı yenile. Kaldığın yer kaybolmaz, söz.', practice: { kind: 'none' }, check: { type: 'reload' } },
   { id: 'l-zoom', ch: 'tarayici', sc: 'zoom', gorev: '⌘+ ile yakınlaştır, ⌘- ile uzaklaştır, ⌘0 ile sıfırla.', practice: { kind: 'none' }, check: { type: 'resize', mods: ['meta'] } },
   { id: 'l-cmdclick', ch: 'tarayici', sc: 'cmdclick', gorev: '⌘ basılıyken aşağıdaki linke tıkla: arka planda yeni sekmede açılır.', practice: { kind: 'link' }, check: { type: 'metaClick' } },

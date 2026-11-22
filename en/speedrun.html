@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speedrun: How Fast Are You on a Mac? | Kısayolcu</title>
+<meta name="description" content="12 tasks, keyboard only. Touch the mouse and it’s +3 seconds. Share your time and see if your friends can beat it.">
+<link rel="canonical" href="https://kisayolcu.gokhanazap.com/en/speedrun">
+<link rel="alternate" hreflang="tr" href="https://kisayolcu.gokhanazap.com/speedrun">
+<link rel="alternate" hreflang="en" href="https://kisayolcu.gokhanazap.com/en/speedrun">
+<link rel="alternate" hreflang="x-default" href="https://kisayolcu.gokhanazap.com/en/speedrun">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Kısayolcu">
+<meta property="og:url" content="https://kisayolcu.gokhanazap.com/en/speedrun">
+<meta property="og:title" content="Speedrun: How Fast Are You on a Mac?">
+<meta property="og:description" content="12 tasks, keyboard only. Touch the mouse and it’s +3 seconds. Share your time and see if your friends can beat it.">
+<meta property="og:image" content="https://kisayolcu.gokhanazap.com/assets/og-speedrun-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@gokhanazap0">
+<meta name="twitter:title" content="Speedrun: How Fast Are You on a Mac?">
+<meta name="twitter:description" content="12 tasks, keyboard only. Touch the mouse and it’s +3 seconds. Share your time and see if your friends can beat it.">
+<meta name="twitter:image" content="https://kisayolcu.gokhanazap.com/assets/og-speedrun-en.png">
+<meta name="theme-color" content="#121110">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/speedrun.css">
+</head>
+<body class="dark">
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="./"><span class="logo-mark">⌘</span>kısayolcu</a>
+    <nav class="nav-links">
+      <a href="learn" class="keep">Learn</a>
+      <a href="speedrun" class="keep on">Speedrun</a>
+      <a href="speedrun#board" class="keep">🏆<span class="cl"> Leaderboard</span></a>
+      <a href="shortcuts" class="">Shortcuts</a>
+      <a href="https://x.com/gokhanazap0" target="_blank" rel="noopener" class="me" aria-label="@gokhanazap0 — X"><img src="../assets/gokhan.jpg" alt="" width="28" height="28"><span class="cl">@gokhanazap0</span><svg class="x" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap run">
+  <!-- INTRO -->
+  <section id="intro" class="screen">
+    <p class="eyebrow lcd-t">Speedrun</p>
+    <h1 class="h-display run-title">How fast are you<br>on a Mac?</h1>
+    <ul class="rules">
+      <li><b id="nTasks">12</b> tasks, back to back</li>
+      <li>🐭 <b>+3s</b> per mouse touch</li>
+      <li><span class="kbd-inline">esc</span> to pass: <b>+10s</b></li>
+      <li>Stuck? A hint appears after 8s (🟨)</li>
+    </ul>
+    <p class="best" id="rivalLine" hidden></p>
+    <p class="best" id="bestLine"></p>
+    <button class="btn btn-primary go" id="start" type="button">To start, press <kbd class="kc kc-mod"><span class="kc-s">↩</span><span class="kc-l">return</span></kbd></button>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section id="count" class="screen" hidden>
+    <div class="countdown" id="countNum">3</div>
+  </section>
+
+  <!-- RUN -->
+  <section id="game" class="screen" hidden>
+    <div class="hud">
+      <div class="lcd" id="timer">00:00.00</div>
+      <div class="hud-side">
+        <span class="hud-pill" id="step">1/12</span>
+        <span class="hud-pill pen" id="pen">+0s</span>
+      </div>
+    </div>
+    <div class="track" id="track"></div>
+    <div class="task-card" id="taskCard">
+      <div class="task-n" id="taskN">Task 1</div>
+      <div class="task-t" id="taskT"></div>
+      <div class="task-hint" id="taskHint"></div>
+    </div>
+    <div class="fields">
+      <label class="lbl" for="editor">Text</label>
+      <textarea id="editor" spellcheck="false">Shortcuts never tire you out; reach for the mouse and you lose.</textarea>
+      <label class="lbl" for="box">Box</label>
+      <input id="box" type="text" spellcheck="false" autocomplete="off" placeholder="…">
+    </div>
+    <p class="run-foot"><span class="kbd-inline">esc</span> pass (+10s)</p>
+  </section>
+
+  <!-- RESULT -->
+  <section id="result" class="screen" hidden>
+    <div class="result-grid">
+      <div class="share-card big" id="card">
+        <div class="sc-top">⌨️ kısayolcu speedrun</div>
+        <div class="sc-time"><span id="rTime">0.00</span><small>s</small></div>
+        <div class="sc-rank" id="rRank"></div>
+        <div class="sc-grid" id="rGrid" aria-label="Task results"></div>
+        <div class="sc-meta" id="rMeta"></div>
+        <div class="sc-url">kisayolcu.gokhanazap.com/en</div>
+        <div class="sc-badge" id="rRecord" hidden>NEW RECORD</div>
+      </div>
+      <div class="result-side">
+        <h2 class="h-display" id="rHead">Done!</h2>
+        <p class="muted" id="rBest"></p>
+        <p class="next-rank" id="rNext"></p>
+        <div class="share-row">
+          <a class="btn btn-primary" id="shareX" target="_blank" rel="noopener">Share on 𝕏</a>
+          <button class="btn" id="copy" type="button">Copy text</button>
+          <button class="btn btn-ghost" id="again" type="button">Again <kbd class="kc kc-mod"><span class="kc-s">↩</span></kbd></button>
+        </div>
+        <form class="lb-form" id="lbForm" autocomplete="off">
+          <label for="lbName">Join the leaderboard:</label>
+          <input id="lbName" type="text" maxlength="20" placeholder="your name or @handle" spellcheck="false">
+          <button class="btn btn-sm" id="lbBtn" type="submit">Save ↩</button>
+        </form>
+        <p class="lb-msg" id="lbMsg" role="status"></p>
+        <button class="btn btn-ghost btn-sm" id="copyCard" type="button">📋 Copy card</button>
+        <button class="btn btn-ghost btn-sm" id="download" type="button">⬇︎ Download card (PNG)</button>
+        <p class="tip">🟩 clean · 🟨 with hint · 🟥 passed</p>
+        <div class="missed" id="missed"></div>
+      </div>
+    </div>
+  </section>
+  <!-- LEADERBOARD -->
+  <section class="board-wrap" id="boardWrap" hidden>
+    <div class="board-head">
+      <h2 class="h-display">🏆 Fastest fingers</h2>
+      <span class="muted" id="boardMeta"></span>
+    </div>
+    <ol class="board" id="board"></ol>
+    <button class="btn btn-ghost btn-sm" id="boardMore" type="button" hidden>Show top 50</button>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span class="maker"><b>kısayolcu</b> · Made by <a href="https://x.com/gokhanazap0" target="_blank" rel="noopener">Gökhan Azap</a> · Source: <a href="https://support.apple.com/en-us/102650" target="_blank" rel="noopener">Apple Support ↗</a></span>
+    <span class="foot-links">
+      <a href="../speedrun" data-lang="tr">🇹🇷 Türkçe</a>
+      <a href="learn">Learn</a>
+      <a href="speedrun">Speedrun</a>
+      <a href="shortcuts">All shortcuts</a>
+    </span>
+  </div>
+</footer>
+
+<script src="../assets/data-en.js"></script>
+<script src="../assets/core.js"></script>
+<script src="../assets/speedrun.js"></script>
+</body>
+</html>

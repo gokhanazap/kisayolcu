@@ -118,3 +118,5 @@ body.dark .eyebrow { color: var(--lcd); }
 .board .rk { font-size: 13px; color: #9a9385; white-space: nowrap; }
 .board .tm { font: 700 17px var(--mono); color: var(--lcd); font-variant-numeric: tabular-nums; white-space: nowrap; }
 @media (max-width: 560px) { .board .rk { display: none; } .board li { grid-template-columns: 36px 1fr auto; } }
+
+.board-wrap { scroll-margin-top: 84px; }

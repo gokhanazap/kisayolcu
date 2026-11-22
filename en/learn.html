@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learn Mac Shortcuts by Doing – Interactive Keyboard Drills | Kısayolcu</title>
+<meta name="description" content="From copy-paste to the emoji picker, Spotlight to window tiling: practice Mac keyboard shortcuts one by one in your browser. Skip what you know; your progress is saved.">
+<link rel="canonical" href="https://kisayolcu.gokhanazap.com/en/learn">
+<link rel="alternate" hreflang="tr" href="https://kisayolcu.gokhanazap.com/ogren">
+<link rel="alternate" hreflang="en" href="https://kisayolcu.gokhanazap.com/en/learn">
+<link rel="alternate" hreflang="x-default" href="https://kisayolcu.gokhanazap.com/en/learn">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Kısayolcu">
+<meta property="og:url" content="https://kisayolcu.gokhanazap.com/en/learn">
+<meta property="og:title" content="Learn Mac Shortcuts by Doing – Interactive Keyboard Drills">
+<meta property="og:description" content="From copy-paste to the emoji picker, Spotlight to window tiling: practice Mac keyboard shortcuts one by one in your browser. Skip what you know; your progress is saved.">
+<meta property="og:image" content="https://kisayolcu.gokhanazap.com/assets/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@gokhanazap0">
+<meta name="twitter:title" content="Learn Mac Shortcuts by Doing – Interactive Keyboard Drills">
+<meta name="twitter:description" content="From copy-paste to the emoji picker, Spotlight to window tiling: practice Mac keyboard shortcuts one by one in your browser. Skip what you know; your progress is saved.">
+<meta name="twitter:image" content="https://kisayolcu.gokhanazap.com/assets/og-en.png">
+<meta name="theme-color" content="#f3eee4">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/ogren.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="./"><span class="logo-mark">⌘</span>kısayolcu</a>
+    <nav class="nav-links">
+      <a href="learn" class="keep on">Learn</a>
+      <a href="speedrun" class="keep">Speedrun</a>
+      <a href="speedrun#board" class="keep">🏆<span class="cl"> Leaderboard</span></a>
+      <a href="shortcuts" class="">Shortcuts</a>
+      <a href="https://x.com/gokhanazap0" target="_blank" rel="noopener" class="me" aria-label="@gokhanazap0 — X"><img src="../assets/gokhan.jpg" alt="" width="28" height="28"><span class="cl">@gokhanazap0</span><svg class="x" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    </nav>
+  </div>
+</header>
+
+<div class="learn wrap">
+  <aside class="side" id="side">
+    <div class="side-top">
+      <div class="side-prog"><b id="pDone">0</b>/<span id="pTotal">0</span> done</div>
+      <div class="bar"><i id="pBar"></i></div>
+      <button class="btn btn-ghost btn-sm side-toggle" id="sideToggle" type="button" aria-expanded="false">Chapters ▾</button>
+    </div>
+    <nav class="side-list" id="sideList"></nav>
+    <button class="reset" id="reset" type="button">Reset progress</button>
+  </aside>
+
+  <main class="stage-wrap">
+    <section class="stage card" id="stage">
+      <div class="stage-top">
+        <span class="pill" id="chapName"></span>
+        <span class="ch-dots" id="chDots" aria-hidden="true"></span>
+        <span class="muted stage-count" id="lessonCount"></span>
+      </div>
+      <div class="big-keys" id="bigKeys"></div>
+      <h1 class="h-display lesson-title" id="title"></h1>
+      <p class="lesson-desc" id="desc"></p>
+      <p class="tr-note" id="trNote" hidden></p>
+
+      <div class="task">
+        <div class="task-label">Your turn</div>
+        <p class="task-text" id="task"></p>
+        <div class="practice" id="practice"></div>
+      </div>
+
+      <div class="status" id="status" aria-live="polite"></div>
+
+      <div class="actions">
+        <button class="btn btn-ghost btn-sm" id="prev" type="button">← Back</button>
+        <span class="grow"></span>
+        <button class="btn btn-sm" id="skip" type="button">Know it, skip <span class="kbd-hint">esc</span></button>
+        <button class="btn btn-primary" id="next" type="button" hidden>Next <kbd class="kc kc-mod"><span class="kc-s">↩</span></kbd></button>
+      </div>
+    </section>
+
+    <section class="finish card" id="finish" hidden>
+      <p class="eyebrow">All done!</p>
+      <h1 class="h-display">Your mouse misses you already. 🎉</h1>
+      <p class="finish-stats" id="finishStats"></p>
+      <div class="finish-cta">
+        <a class="btn btn-primary" href="speedrun">⚡ Now test yourself in the speedrun</a>
+        <a class="btn" href="shortcuts">Full shortcut list</a>
+        <a class="btn btn-dark" href="#" data-contact>✉️ Share your thoughts</a>
+      </div>
+      <button class="reset" id="reset2" type="button">Start over</button>
+    </section>
+
+    <div class="livebar">
+      <span class="muted">You’re pressing:</span>
+      <span id="live" class="live"><span class="muted">—</span></span>
+    </div>
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <span class="maker"><b>kısayolcu</b> · Made by <a href="https://x.com/gokhanazap0" target="_blank" rel="noopener">Gökhan Azap</a> · Source: <a href="https://support.apple.com/en-us/102650" target="_blank" rel="noopener">Apple Support ↗</a></span>
+    <span class="foot-links">
+      <a href="../ogren" data-lang="tr">🇹🇷 Türkçe</a>
+      <a href="learn">Learn</a>
+      <a href="speedrun">Speedrun</a>
+      <a href="shortcuts">All shortcuts</a>
+    </span>
+  </div>
+</footer>
+
+<script src="../assets/data-en.js"></script>
+<script src="../assets/core.js"></script>
+<script src="../assets/ogren.js"></script>
+</body>
+</html>

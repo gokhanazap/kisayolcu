@@ -1,6 +1,7 @@
 /* Öğren: adım adım alıştırma motoru. */
 (function () {
   const { renderShortcut, keyGroup, prettyText, esc, matches, keyNames, store, toast, modRecent, beep, reduceMotion } = window.KS;
+  const { t, PATHS } = window.KS;
   const SC = Object.fromEntries(window.KS_SHORTCUTS.map(s => [s.id, s]));
   const CH = window.KS_CHAPTERS;
   // Bölüm sırasına göre dersler
@@ -86,13 +87,13 @@
 
   // ── Durum satırı ───────────────────────────────────
   function setStatus(html) { $('status').innerHTML = html; }
-  function waiting(msg) { setStatus(`<span class="wait">${msg || 'Bekleniyor — hadi dene'}</span>`); }
+  function waiting(msg) { setStatus(`<span class="wait">${msg || t('Bekleniyor — hadi dene')}</span>`); }
   function addFallback(ms) {
     later(() => {
       if (solved) return;
       const b = document.createElement('button');
       b.className = 'fallback'; b.type = 'button';
-      b.textContent = 'Algılayamadık mı? Yaptım say';
+      b.textContent = t('Algılayamadık mı? Yaptım say');
       b.onclick = () => success(true);
       $('status').appendChild(b);
     }, ms);
@@ -112,7 +113,7 @@
     $('title').textContent = sc.ad;
     $('desc').textContent = sc.d;
     $('trNote').hidden = !sc.tr;
-    $('trNote').textContent = sc.tr ? '🇹🇷 ' + sc.tr : '';
+    $('trNote').textContent = sc.tr ? (window.KS.LANG === 'en' ? '⌨️ ' : '🇹🇷 ') + sc.tr : '';
     $('task').innerHTML = prettyText(l.gorev);
     $('next').hidden = true;
     $('skip').hidden = false;
@@ -121,7 +122,7 @@
     save();
     const field = buildPractice(l);
     startCheck(l, field);
-    if (prog.done[l.id]) $('status').insertAdjacentHTML('afterbegin', '<span class="pill pill-ok">✓ Bunu daha önce yaptın</span>');
+    if (prog.done[l.id]) $('status').insertAdjacentHTML('afterbegin', '<span class="pill pill-ok">' + t('✓ Bunu daha önce yaptın') + '</span>');
   }
 
   function renderDots() {
@@ -156,21 +157,23 @@
     } else if (p.kind === 'tab') {
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'btn btn-sm'; b.id = 'openTab';
-      b.textContent = 'Deneme sekmesini aç ↗';
+      b.textContent = t('Deneme sekmesini aç ↗');
       box.appendChild(b);
       requestAnimationFrame(() => b.focus({ preventScroll: true }));
     } else if (p.kind === 'paste') {
       field = document.createElement('div');
       field.className = 'paste-box'; field.tabIndex = 0;
       field.contentEditable = 'true';
-      field.setAttribute('aria-label', 'Görseli buraya yapıştır');
+      field.setAttribute('aria-label', t('Görseli buraya yapıştır'));
       field.addEventListener('beforeinput', e => e.preventDefault());
-      field.innerHTML = '<span>Buraya tıkla ve <span class="kbd-inline">⌘V</span> ile görseli yapıştır</span>';
+      field.innerHTML = '<span>' + t('Ekran görüntüsünü al, sonra <span class="kbd-inline">⌘V</span> ile buraya yapıştır') + '</span>';
       box.appendChild(field);
+      requestAnimationFrame(() => field.focus({ preventScroll: true }));
+      window.addEventListener('focus', () => { if (document.body.contains(field)) field.focus({ preventScroll: true }); }, { once: true });
     } else if (p.kind === 'link') {
       const a = document.createElement('a');
-      a.href = 'kapat.html?m=link'; a.target = '_blank'; a.className = 'trylink'; a.id = 'tryLink';
-      a.textContent = '→ Bu linke ⌘ basılıyken tıkla';
+      a.href = PATHS.helper + 'm=link'; a.target = '_blank'; a.className = 'trylink'; a.id = 'tryLink';
+      a.textContent = t('→ Bu linke ⌘ basılıyken tıkla');
       box.appendChild(a);
     }
     if (!field) requestAnimationFrame(() => { if (document.activeElement === document.body || !document.activeElement) $('stage').focus?.(); });
@@ -186,12 +189,12 @@
       if (solved) return;
       count++;
       if (count >= need) success();
-      else setStatus(`<span class="count">${count}/${need}</span><span class="wait">Güzel, devam</span>`);
+      else setStatus(`<span class="count">${count}/${need}</span><span class="wait">${t('Güzel, devam')}</span>`);
     };
 
     switch (c.type) {
       case 'combo':
-        waiting(need > 1 ? `Bekleniyor — ${need} kez` : null);
+        waiting(need > 1 ? t('Bekleniyor — {n} kez', { n: need }) : null);
         on(document, 'keydown', e => {
           if (!c.combos.some(cb => matches(e, cb))) return;
           if (c.prevent) e.preventDefault();   // çözüldükten sonra da ⌘S/⌘F tarayıcıya gitmesin
@@ -217,7 +220,7 @@
         let gone = false;
         const leave = () => {
           if (solved || gone) return;
-          if (modRecent(c.mods || ['meta'], 2500)) { gone = true; setStatus('<span class="away">👀 Gittin… şimdi geri dön</span>'); }
+          if (modRecent(c.mods || ['meta'], 2500)) { gone = true; setStatus('<span class="away">' + t('👀 Gittin… şimdi geri dön') + '</span>'); }
         };
         const back = () => { if (gone && !solved) success(); };
         on(window, 'blur', leave);
@@ -241,20 +244,20 @@
 
       case 'tabClose':
       case 'tabReopen': {
-        waiting(c.type === 'tabClose' ? 'Önce butona bas' : 'Önce butona bas, sonra ⌘W, sonra ⇧⌘T');
+        waiting(c.type === 'tabClose' ? t('Önce ↩ ile sekmeyi aç') : t('Önce ↩ ile sekmeyi aç, sonra ⌘W, sonra ⇧⌘T'));
         let w = null, closed = false;
         const bc = channel();
         $('openTab').addEventListener('click', () => {
-          w = window.open('kapat.html?m=' + (c.type === 'tabClose' ? 'close' : 'reopen'), '_blank');
-          if (!w) { toast('Tarayıcı sekmeyi engelledi, tekrar dene'); return; }
-          waiting(c.type === 'tabClose' ? 'Şimdi açılan sekmede ⌘W' : 'Şimdi açılan sekmede ⌘W');
+          w = window.open(PATHS.helper + 'm=' + (c.type === 'tabClose' ? 'close' : 'reopen'), '_blank');
+          if (!w) { toast(t('Tarayıcı sekmeyi engelledi, tekrar dene')); return; }
+          waiting(t('Şimdi açılan sekmede ⌘W'));
         });
         every(() => {
           if (solved || !w || closed) return;
           if (w.closed) {
             closed = true;
             if (c.type === 'tabClose') success();
-            else waiting('Kapandı! Şimdi ⇧⌘T ile geri getir');
+            else waiting(t('Kapandı! Şimdi ⇧⌘T ile geri getir'));
           }
         }, 300);
         if (bc) {
@@ -284,10 +287,10 @@
         on(document, 'paste', e => {
           const items = [...(e.clipboardData?.items || [])];
           const img = items.find(it => it.type.startsWith('image/'));
-          if (!img) { toast('Panoda görsel yok — önce ⌃⇧⌘4 ile alan seç'); return; }
+          if (!img) { toast(t('Panoda görsel yok — önce ⌃⇧⌘4 ile alan seç')); return; }
           e.preventDefault();
           const f = img.getAsFile();
-          if (f && field) { const u = URL.createObjectURL(f); field.innerHTML = `<img alt="Yapıştırdığın ekran görüntüsü" src="${u}">`; cleanups.push(() => URL.revokeObjectURL(u)); }
+          if (f && field) { const u = URL.createObjectURL(f); field.innerHTML = `<img alt="" src="${u}">`; cleanups.push(() => URL.revokeObjectURL(u)); }
           success();
         });
         addFallback(20000);
@@ -297,7 +300,7 @@
         waiting();
         on($('tryLink'), 'click', e => {
           if (e.metaKey || e.ctrlKey) { success(); }
-          else { e.preventDefault(); toast('⌘ basılı değildi! Tekrar dene', 'warn'); }
+          else { e.preventDefault(); toast(t('⌘ basılı değildi! Tekrar dene'), 'warn'); }
         });
         break;
 
@@ -305,9 +308,10 @@
       case 'info': {
         const b = document.createElement('button');
         b.type = 'button'; b.className = 'btn btn-sm btn-dark';
-        b.textContent = c.type === 'info' ? 'Anladım ✓' : 'Yaptım ✓';
+        b.textContent = c.type === 'info' ? t('Anladım ↩') : t('Yaptım ↩');
+        requestAnimationFrame(() => b.focus({ preventScroll: true }));
         b.onclick = () => success(true);
-        setStatus(c.type === 'manual' ? '<span class="muted">Bunu tarayıcı göremiyor, dürüstlüğüne güveniyoruz 🤝</span>' : '');
+        setStatus(c.type === 'manual' ? '<span class="muted">' + t('Bunu tarayıcı göremiyor, dürüstlüğüne güveniyoruz 🤝') + '</span>' : '');
         $('status').prepend(b);
         break;
       }
@@ -316,7 +320,7 @@
 
   function channel() { try { return new BroadcastChannel('kisayolcu'); } catch (_) { return null; } }
 
-  const PRAISE = ['Harika!', 'İşte bu!', 'Tam isabet!', 'Parmakların hızlı!', 'Ustalaşıyorsun!', 'Fare ağlıyor 🐭', 'Mükemmel!'];
+  const PRAISE = ['Harika!', 'İşte bu!', 'Tam isabet!', 'Parmakların hızlı!', 'Ustalaşıyorsun!', 'Fare ağlıyor 🐭', 'Mükemmel!'].map(x => t(x));
   function success(manual) {
     if (solved) return;
     solved = true;
@@ -329,12 +333,12 @@
     const chLs = LESSONS.filter(x => x.ch === l.ch);
     if (chLs.every(x => prog.done[x.id])) {
       const ch = CH.find(c => c.id === l.ch);
-      toast(`🎉 “${esc(ch.ad)}” bölümü tamam! ${chLs.length}/${chLs.length}`, 'ok');
+      toast(t('🎉 “{ad}” tamam! {n}/{n}', { ad: esc(ch.ad), n: chLs.length }), 'ok');
     }
-    const msg = manual ? 'Not edildi ✓' : '✓ ' + PRAISE[Math.floor(Math.random() * PRAISE.length)];
-    setStatus(`<span class="ok">${msg}</span><span class="muted auto-next">sıradaki geliyor…</span>`);
+    const msg = manual ? '✓' : '✓ ' + PRAISE[Math.floor(Math.random() * PRAISE.length)];
+    setStatus(`<span class="ok">${msg}</span>`);
     // Otomatik geçiş: doğru yapınca kısa bir kutlamadan sonra sıradaki derse geç
-    later(() => { if (solved) go(nextIndex()); }, manual ? 500 : 1400);
+    later(() => { if (solved) go(nextIndex()); }, manual ? 120 : 320);
     $('skip').hidden = true;
     $('next').hidden = false;
     renderSide();
@@ -359,7 +363,7 @@
     solved = false;
     $('stage').hidden = true; $('finish').hidden = false;
     const d = LESSONS.filter(l => prog.done[l.id]).length, s = LESSONS.filter(l => prog.skip[l.id] && !prog.done[l.id]).length;
-    $('finishStats').innerHTML = `<b>${d}</b> kısayolu denedin, <b>${s}</b> tanesini zaten biliyordun. Toplam ${LESSONS.length} alıştırma.`;
+    $('finishStats').innerHTML = t('<b>{d}</b> kısayolu denedin, <b>{s}</b> tanesini zaten biliyordun. Toplam {n} alıştırma.', { d, s, n: LESSONS.length });
     renderSide();
   }
 
@@ -372,7 +376,7 @@
   });
   $('prev').addEventListener('click', () => go(cur - 1));
   function resetAll() {
-    if (!confirm('Tüm ilerleme silinsin mi?')) return;
+    if (!confirm(t('Tüm ilerleme silinsin mi?'))) return;
     prog.done = {}; prog.skip = {}; cur = 0; save(); render();
   }
   $('reset').addEventListener('click', resetAll);
@@ -401,7 +405,7 @@
   if (!window.KS.isMac()) {
     const n = document.createElement('div');
     n.className = 'nomac card';
-    n.innerHTML = '<b>Alıştırmalar Mac klavyesiyle çalışıyor.</b> Linki kendine at, Mac’te aç. <button class="btn btn-primary btn-sm" type="button">💻 Linki Mac’ime gönder</button>';
+    n.innerHTML = t('<b>Alıştırmalar Mac klavyesiyle çalışıyor.</b> Linki kendine at, Mac’te aç.') + ' <button class="btn btn-primary btn-sm" type="button">' + t('💻 Linki Mac’ime gönder') + '</button>';
     n.querySelector('button').addEventListener('click', window.KS.sendToMac);
     $('stage').before(n);
   }

@@ -4,4 +4,8 @@
   <url><loc>https://kisayolcu.gokhanazap.com/ogren</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://kisayolcu.gokhanazap.com/kisayollar</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://kisayolcu.gokhanazap.com/speedrun</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kisayolcu.gokhanazap.com/en/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kisayolcu.gokhanazap.com/en/learn</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kisayolcu.gokhanazap.com/en/speedrun</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kisayolcu.gokhanazap.com/en/shortcuts</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>

@@ -12,6 +12,7 @@ const MIN_RAW_MS = 8000;          // 12 görev bundan hızlı bitmez
 const MAX_MS = 15 * 60 * 1000;
 const TASKS = 12;
 const enc = new TextEncoder();
+const EN_PATH = { '/': '/en/', '/index': '/en/', '/ogren': '/en/learn', '/speedrun': '/en/speedrun', '/kisayollar': '/en/shortcuts' };
 
 const json = (data, status = 200, extra = {}) =>
   new Response(JSON.stringify(data), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store', ...extra } });
@@ -41,7 +42,19 @@ async function top(db) {
 export default {
   async fetch(req, env, ctx) {
     const url = new URL(req.url);
-    if (!url.pathname.startsWith('/api/')) return env.ASSETS.fetch(req);
+    if (!url.pathname.startsWith('/api/')) {
+      // Dil: Türkiye dışından gelen ve dil seçmemiş ziyaretçiyi İngilizce sayfaya yönlendir.
+      const to = EN_PATH[url.pathname.replace(/\.html$/, '')];
+      if (to && req.method === 'GET') {
+        const cookie = req.headers.get('cookie') || '';
+        const country = (req.cf && req.cf.country) || 'TR';
+        const bot = /bot|crawl|spider|slurp|facebookexternalhit|preview|embed|whatsapp|telegram|slack|discord/i.test(req.headers.get('user-agent') || '');
+        if (!/(^|;\s*)lang=/.test(cookie) && country !== 'TR' && !bot) {
+          return new Response(null, { status: 302, headers: { location: to + url.search, 'cache-control': 'no-store', vary: 'cookie' } });
+        }
+      }
+      return env.ASSETS.fetch(req);
+    }
 
     try {
       const ip = req.headers.get('cf-connecting-ip') || '0';

@@ -1,6 +1,8 @@
 /* Landing: canlı klavye, kısayol tanıma, sayaçlar, kartlar. */
 (function () {
   const { keycap, renderShortcut, keyGroup, lookup, esc, prettyText, isMac, sendToMac, reduceMotion, matches, beep } = window.KS;
+  const { t, PATHS, LANG } = window.KS;
+  const EN = LANG === 'en';
   const SC = window.KS_SHORTCUTS, CH = window.KS_CHAPTERS, LS = window.KS_LESSONS, CATS = window.KS_CATS;
   const byId = Object.fromEntries(SC.map(s => [s.id, s]));
   const $ = s => document.querySelector(s);
@@ -20,13 +22,22 @@
   });
 
   // ── Türkçe Q klavye ────────────────────────────────
-  const ROWS = [
+  const ROWS_TR = [
     [['IntlBackslash', '"'], ['Digit1', '1'], ['Digit2', '2'], ['Digit3', '3'], ['Digit4', '4'], ['Digit5', '5'], ['Digit6', '6'], ['Digit7', '7'], ['Digit8', '8'], ['Digit9', '9'], ['Digit0', '0'], ['Minus', '*'], ['Equal', '-'], ['Backspace', 'delete', 1.6, '⌫']],
     [['Tab', 'tab', 1.5, '⇥'], ['KeyQ', 'Q'], ['KeyW', 'W'], ['KeyE', 'E'], ['KeyR', 'R'], ['KeyT', 'T'], ['KeyY', 'Y'], ['KeyU', 'U'], ['KeyI', 'I'], ['KeyO', 'O'], ['KeyP', 'P'], ['BracketLeft', 'Ğ'], ['BracketRight', 'Ü'], ['Backslash', ',', 1.1]],
     [['CapsLock', 'caps', 1.8], ['KeyA', 'A'], ['KeyS', 'S'], ['KeyD', 'D'], ['KeyF', 'F'], ['KeyG', 'G'], ['KeyH', 'H'], ['KeyJ', 'J'], ['KeyK', 'K'], ['KeyL', 'L'], ['Semicolon', 'Ş'], ['Quote', 'İ'], ['Enter', 'return', 1.8, '↩']],
     [['ShiftLeft', 'shift', 1.3, '⇧'], ['Backquote', '<'], ['KeyZ', 'Z'], ['KeyX', 'X'], ['KeyC', 'C'], ['KeyV', 'V'], ['KeyB', 'B'], ['KeyN', 'N'], ['KeyM', 'M'], ['Comma', 'Ö'], ['Period', 'Ç'], ['Slash', '.'], ['ShiftRight', 'shift', 2.3, '⇧']],
     [['Fn', 'fn', 1, '🌐'], ['ControlLeft', 'control', 1.1, '⌃'], ['AltLeft', 'option', 1.1, '⌥'], ['MetaLeft', 'command', 1.4, '⌘'], ['Space', 'space', 5.2], ['MetaRight', 'command', 1.4, '⌘'], ['AltRight', 'option', 1.1, '⌥'], ['ArrowLeft', '', 1, '←'], ['ArrowUp', '', 1, '↑'], ['ArrowDown', '', 1, '↓'], ['ArrowRight', '', 1, '→']]
   ];
+  const L = s => [...s].map(c => [({ '`': 'Backquote', '-': 'Minus', '=': 'Equal', '[': 'BracketLeft', ']': 'BracketRight', '\\': 'Backslash', ';': 'Semicolon', "'": 'Quote', ',': 'Comma', '.': 'Period', '/': 'Slash' })[c] || (/\d/.test(c) ? 'Digit' + c : 'Key' + c), c]);
+  const ROWS_US = [
+    [...L('`1234567890-='), ['Backspace', 'delete', 1.6, '⌫']],
+    [['Tab', 'tab', 1.5, '⇥'], ...L('QWERTYUIOP[]'), ['Backslash', '\\', 1.1]],
+    [['CapsLock', 'caps', 1.8], ...L("ASDFGHJKL;'"), ['Enter', 'return', 1.8, '↩']],
+    [['ShiftLeft', 'shift', 2.3, '⇧'], ...L('ZXCVBNM,./'), ['ShiftRight', 'shift', 2.3, '⇧']],
+    ROWS_TR[4]
+  ];
+  const ROWS = EN ? ROWS_US : ROWS_TR;
   const kb = $('#kb');
   kb.innerHTML = ROWS.map(row => '<div class="kb-row">' + row.map(([code, label, w, sym]) => {
     const style = w ? ` style="--w:${w}"` : '';
@@ -49,12 +60,12 @@
     const sc = list[0];
     let desc = esc(sc.d);
     const others = list.slice(1).filter(o => o.ad !== sc.ad);
-    if (others.length) desc += `<br><span class="muted">${esc(catName(others[0].cat))}’da: ${esc(others[0].ad)}</span>`;
+    if (others.length) desc += `<br><span class="muted">${esc(catName(others[0].cat))}: ${esc(others[0].ad)}</span>`;
     show(keyGroup(pressedKeys || sc.keys), sc.ad, desc);
   }
 
   // ── Demo döngüsü (kullanıcı basana kadar) ────────────
-  const DEMO = ['emoji', 'spotlight', 'at', 'ssclip', 'reopentab', 'delword', 'tileleft', 'hidden'];
+  const DEMO = ['emoji', 'spotlight', EN ? 'quicklook' : 'at', 'ssclip', 'reopentab', 'delword', 'tileleft', 'hidden'];
   let demoOn = true, demoI = 0, demoTimer;
   const CODE_OF = { cmd: 'MetaLeft', opt: 'AltLeft', ctrl: 'ControlLeft', shift: 'ShiftLeft', fn: 'Fn', space: 'Space', delete: 'Backspace', left: 'ArrowLeft', right: 'ArrowRight', up: 'ArrowUp', down: 'ArrowDown', tab: 'Tab', return: 'Enter', '.': 'Slash' };
   const codeFor = k => CODE_OF[k] || (/^[a-z]$/.test(k) ? 'Key' + k.toUpperCase() : /^\d$/.test(k) ? 'Digit' + k : null);
@@ -84,7 +95,7 @@
   document.addEventListener('keydown', e => {
     if (e.target.closest && e.target.closest('input,textarea,select')) return;
     if (e.key === 'Enter' && !e.metaKey && !e.ctrlKey && !e.altKey && !e.shiftKey) {
-      if (!e.target.closest('a,button,summary')) location.href = 'ogren';
+      if (!e.target.closest('a,button,summary')) location.href = PATHS.learn;
       return;
     }
     stopDemo();
@@ -93,7 +104,7 @@
     if (MOD_KEY[e.key]) {
       if (e.key === 'Meta') lastMetaDown = performance.now();
       const mods = [e.ctrlKey && 'ctrl', e.altKey && 'opt', e.shiftKey && 'shift', e.metaKey && 'cmd'].filter(Boolean);
-      show(keyGroup(mods), '…', 'Bir tuş daha ekle.');
+      show(keyGroup(mods), '…', t('Bir tuş daha ekle.'));
       return;
     }
     lastNonMod = performance.now();
@@ -106,9 +117,9 @@
       if ((e.metaKey || e.ctrlKey) && names.some(n => PREVENT.has(n))) e.preventDefault();
       showShortcut(hit, pressed);
     } else if (mods.length && !(mods.length === 1 && mods[0] === 'shift')) {
-      show(keyGroup(pressed), 'Bunu listemizde bulamadık 🤔', 'Belki bir uygulamaya özeldir. <a href="kisayollar">Tüm listeye</a> göz at.');
+      show(keyGroup(pressed), t('Bunu listemizde bulamadık 🤔'), t('Belki bir uygulamaya özeldir. <a href="{u}">Tüm listeye</a> göz at.', { u: PATHS.list }));
     } else {
-      show(keyGroup(pressed), 'Bu sadece bir tuş 🙂', 'Bir kısayol dene: ⌘ ya da ⌥ ile birlikte bas.');
+      show(keyGroup(pressed), t('Bu sadece bir tuş 🙂'), t('Bir kısayol dene: ⌘ ya da ⌥ ile birlikte bas.'));
     }
   });
 
@@ -123,20 +134,20 @@
     const now = performance.now();
     if (now - lastMetaDown < 900 && lastNonMod < lastMetaDown) {
       stopDemo();
-      show(keyGroup(['cmd', 'space']), 'Spotlight’ı mı açtın? 😉', 'Ya da ⌘Tab ile kaçtın. macOS bu ikisini tarayıcıdan önce yakalar — biz de sonucundan anlıyoruz. <b>Öğren</b> bölümünde hepsi var.');
+      show(keyGroup(['cmd', 'space']), t('Spotlight’ı mı açtın? 😉'), t('Ya da ⌘Tab ile kaçtın. macOS bu ikisini tarayıcıdan önce yakalar — biz de sonucundan anlıyoruz. <b>Öğren</b> bölümünde hepsi var.'));
     }
   });
 
   // ── Ticker ─────────────────────────────────────────
-  const tickIds = ['copy', 'emoji', 'spotlight', 'cmdtab', 'at', 'ssclip', 'quicklook', 'reopentab', 'delword', 'tileleft', 'lock', 'hidden', 'forcequit', 'move'];
+  const tickIds = ['copy', 'emoji', 'spotlight', 'cmdtab', EN ? 'fullscreen' : 'at', 'ssclip', 'quicklook', 'reopentab', 'delword', 'tileleft', 'lock', 'hidden', 'forcequit', 'move'];
   const sym = k => (window.KS.KEYS[k] && window.KS.KEYS[k].s) || k.toUpperCase();
   const tickHtml = tickIds.map(id => byId[id]).map(s => `<span><b>${s.keys.map(sym).join('')}</b>${esc(s.ad)}</span>`).join('');
   $('#ticker').innerHTML = tickHtml + tickHtml;
 
   // ── Gizli cevherler ────────────────────────────────
   const GEMS = [
-    { id: 'emoji', feature: true, quote: '“Macbook’ta emoji koymak için tarayıcıdan emojiyi aramanıza gerek yok… 1 saat bununla uğraşıyor millet.”', cite: '— <a href="https://x.com/gokhanazap0" target="_blank" rel="noopener">@gokhanazap0</a>, bu sitenin doğduğu tweet' },
-    { id: 'at' }, { id: 'ssclip' }, { id: 'quicklook' }, { id: 'hidden' }, { id: 'tileleft' }, { id: 'reopentab' }, { id: 'delword' }, { id: 'move' }, { id: 'spotlight' }, { id: 'lock' }
+    { id: 'emoji', feature: true, quote: t('“Macbook’ta emoji koymak için tarayıcıdan emojiyi aramanıza gerek yok… 1 saat bununla uğraşıyor millet.”'), cite: '— <a href="https://x.com/gokhanazap0" target="_blank" rel="noopener">@gokhanazap0</a>' + t(', bu sitenin doğduğu tweet') },
+    { id: EN ? 'forcequit' : 'at' }, { id: 'ssclip' }, { id: 'quicklook' }, { id: 'hidden' }, { id: 'tileleft' }, { id: 'reopentab' }, { id: 'delword' }, { id: 'move' }, { id: 'spotlight' }, { id: 'lock' }
   ];
   $('#gems').innerHTML = GEMS.map(g => {
     const s = byId[g.id];
@@ -151,7 +162,7 @@
   // ── Bölümler ───────────────────────────────────────
   $('#chapters').innerHTML = CH.map((c, i) => {
     const n = LS.filter(l => l.ch === c.id).length;
-    return `<a class="chap card" href="ogren#${c.id}"><span class="chap-n">${i + 1}</span><div><h3>${esc(c.ad)}</h3><p>${esc(c.alt)} · ${n} alıştırma</p></div></a>`;
+    return `<a class="chap card" href="${PATHS.learn}#${c.id}"><span class="chap-n">${i + 1}</span><div><h3>${esc(c.ad)}</h3><p>${esc(c.alt)} · ${n} ${t('alıştırma')}</p></div></a>`;
   }).join('');
 
   // ── LCD sayaç (görünür olunca) ─────────────────────
@@ -171,8 +182,8 @@
   fetch('/api/scores').then(r => r.json()).then(d => {
     if (!d.top || !d.top.length) return;
     const mb = $('#miniBoard');
-    mb.innerHTML = '<li class="mb-h">🏆 Şu an en hızlılar · ' + d.players + ' kişi yarıştı</li>' + d.top.slice(0, 3).map((r, i) =>
-      `<li><span>${['🥇', '🥈', '🥉'][i]} ${esc(r.name)}</span><b>${(r.ms / 1000).toFixed(2).replace('.', ',')} sn</b></li>`).join('');
+    mb.innerHTML = '<li class="mb-h">' + t('🏆 Şu an en hızlılar · {n} kişi yarıştı', { n: d.players }) + '</li>' + d.top.slice(0, 3).map((r, i) =>
+      `<li><span>${['🥇', '🥈', '🥉'][i]} ${esc(r.name)}</span><b>${EN ? (r.ms / 1000).toFixed(2) : (r.ms / 1000).toFixed(2).replace('.', ',')} ${t('sn')}</b></li>`).join('');
     mb.hidden = false;
   }).catch(() => {});
 
@@ -184,16 +195,16 @@
     if (matches(e, 'alt+delete')) {
       setTimeout(() => {
         demo.classList.add('ok'); beep(1320, .07);
-        dst.innerHTML = '✓ İşte böyle. Daha ' + (LS.length - 1) + ' tane var → <a href="ogren">Öğrenmeye başla</a>';
+        dst.innerHTML = t('✓ İşte böyle. Daha {n} tane var → <a href="{u}">Öğrenmeye başla</a>', { n: LS.length - 1, u: PATHS.learn });
       }, 0);
     } else if (e.key === 'Backspace' && !e.altKey && !e.metaKey) {
-      dst.textContent = 'Harf harf değil, kelime kelime: ⌥ basılıyken ⌫ 😉';
+      dst.textContent = t('Harf harf değil, kelime kelime: ⌥ basılıyken ⌫ 😉');
     }
   });
 
   // ── Mac değilse: linki Mac’e gönder ────────────────
   if (!isMac()) {
-    $('#heroCta').innerHTML = '<button class="btn btn-primary" type="button" id="toMac">💻 Linki Mac’ime gönder</button><a class="btn" href="kisayollar">Listeye göz at</a><p class="note">Alıştırmalar Mac klavyesiyle çalışıyor. Telefondaysan linki kendine at, Mac’te aç.</p>';
+    $('#heroCta').innerHTML = '<button class="btn btn-primary" type="button" id="toMac">' + t('💻 Linki Mac’ime gönder') + '</button><a class="btn" href="' + PATHS.list + '">' + t('Listeye göz at') + '</a><p class="note">' + t('Alıştırmalar Mac klavyesiyle çalışıyor. Telefondaysan linki kendine at, Mac’te aç.') + '</p>';
     $('#toMac').addEventListener('click', sendToMac);
   }
 })();

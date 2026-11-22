@@ -171,3 +171,12 @@ a { color: inherit; }
   .logo { font-size: 18px; }
   .nav-links a { padding: 8px 9px; font-size: 14px; }
 }
+
+/* Profil çipi */
+.nav-links .me { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px 5px 5px; margin-left: 6px; border-radius: 99px; background: var(--ink); color: var(--paper); font-size: 14px; }
+.nav-links .me:hover { background: #000; color: #fff; }
+.nav-links .me img { width: 28px; height: 28px; border-radius: 50%; display: block; }
+body.dark .nav-links .me { background: var(--paper); color: var(--ink); }
+body.dark .nav-links .me:hover { background: #fff; color: #000; }
+@media (max-width: 860px) { .nav-links .cl { display: none; } .nav-links .me { padding: 4px 9px 4px 4px; gap: 6px; } .nav-links a { padding: 8px 9px; } }
+@media (max-width: 720px) { .nav-links a:not(.keep):not(.me) { display: none; } }

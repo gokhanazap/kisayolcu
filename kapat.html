@@ -24,14 +24,21 @@
   </main>
 <script src="assets/core.js"></script>
 <script>
-  const m = new URLSearchParams(location.search).get('m');
-  document.getElementById('keys').innerHTML = KS.keyGroup(['cmd', 'w']);
-  if (m === 'reopen') {
-    document.getElementById('p').textContent = '⌘W ile kapat, sonra ⇧⌘T ile geri getir. Geri geldiğimde Kısayolcu anlayacak.';
-  } else if (m === 'link') {
-    document.getElementById('t').textContent = 'Arka planda açıldım 👋';
-    document.getElementById('p').textContent = '⌘ + tık sayesinde okuduğun sayfadan çıkmadın. Bu sekmeyi ⌘W ile kapatabilirsin.';
-  }
+  const q = new URLSearchParams(location.search), m = q.get('m'), en = q.get('l') === 'en';
+  const T = en ? {
+    t: 'Now close this tab', p: 'Hands off the mouse: close it with ⌘W and you’ll land back on Kısayolcu.',
+    reopen: 'Close it with ⌘W, then bring it back with ⇧⌘T. Kısayolcu will notice when I’m back.',
+    lt: 'I opened in the background 👋', lp: 'Thanks to ⌘-click you never left the page you were reading. Close this tab with ⌘W.'
+  } : {
+    t: 'Şimdi bu sekmeyi kapat', p: 'Fareye dokunma: ⌘W ile kapat, Kısayolcu sekmesine geri dönersin.',
+    reopen: '⌘W ile kapat, sonra ⇧⌘T ile geri getir. Geri geldiğimde Kısayolcu anlayacak.',
+    lt: 'Arka planda açıldım 👋', lp: '⌘ + tık sayesinde okuduğun sayfadan çıkmadın. Bu sekmeyi ⌘W ile kapatabilirsin.'
+  };
+  if (en) document.documentElement.lang = 'en';
+  const $ = id => document.getElementById(id);
+  $('keys').innerHTML = KS.keyGroup(['cmd', 'w']);
+  $('t').textContent = m === 'link' ? T.lt : T.t;
+  $('p').textContent = m === 'link' ? T.lp : m === 'reopen' ? T.reopen : T.p;
   try { const bc = new BroadcastChannel('kisayolcu'); bc.postMessage('open'); addEventListener('pagehide', () => bc.postMessage('close')); } catch (_) {}
 </script>
 </body>
