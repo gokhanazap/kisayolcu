@@ -118,3 +118,7 @@
 
 .nomac { padding: 16px 18px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; background: #fff1c9; border-color: #ecd9a8; }
 .auto-next { font-size: 14px; }
+
+.pad-note { margin: -6px 0 16px; font-size: 16px; color: var(--ink-2); display: inline-flex; gap: 8px; align-items: center; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; }
+.pad-note b { color: var(--ink); }
+.btn-dark .kbd-hint { background: rgba(255,255,255,.16); color: #fff; }

@@ -15,7 +15,7 @@ function build(dataFile, htmlFile, lang, learn, pill, tryTxt, flag) {
     const rows = window.KS_SHORTCUTS.filter(s => s.cat === c.id);
     html += `<section class="cat" id="${c.id}"><h2>${c.ikon} ${esc(c.ad)} <small>${rows.length}</small></h2><p>${esc(c.aciklama)}</p><div class="rows">` +
       rows.map(s => { const l = lessonBySc[s.id];
-        return `<article class="r card"><div>${renderShortcut(s)}</div><div><h3>${esc(s.ad)}${s.pop ? `<span class="pill pill-hot">${pill}</span>` : ''}</h3><p>${esc(s.d)}${s.tr ? ` <span class="trn">${flag} ${esc(s.tr)}</span>` : ''}</p></div>` + (l ? `<a class="try" href="${learn}#${l.id}">${tryTxt}</a>` : '<span></span>') + '</article>'; }).join('') + '</div></section>';
+        return `<article class="r card"><div>${renderShortcut(s)}</div><div><h3>${esc(s.ad)}${s.pop ? `<span class="pill pill-hot">${pill}</span>` : ''}</h3><p>${esc(s.d)}${s.tr ? ` <span class="trn">${flag} ${esc(s.tr)}</span>` : ''}${s.pad ? ` <span class="trn pad">🖐 Trackpad: ${esc(s.pad)}</span>` : ''}</p></div>` + (l ? `<a class="try" href="${learn}#${l.id}">${tryTxt}</a>` : '<span></span>') + '</article>'; }).join('') + '</div></section>';
   });
   const f = path.join(dir, htmlFile);
   let s = fs.readFileSync(f, 'utf8');

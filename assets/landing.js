@@ -59,6 +59,7 @@
   function showShortcut(list, pressedKeys) {
     const sc = list[0];
     let desc = esc(sc.d);
+    if (sc.pad) desc += `<br><span class="muted">🖐 Trackpad: ${esc(sc.pad)}</span>`;
     const others = list.slice(1).filter(o => o.ad !== sc.ad);
     if (others.length) desc += `<br><span class="muted">${esc(catName(others[0].cat))}: ${esc(others[0].ad)}</span>`;
     show(keyGroup(pressedKeys || sc.keys), sc.ad, desc);

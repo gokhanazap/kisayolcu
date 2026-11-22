@@ -50,7 +50,7 @@ window.KS_SHORTCUTS = [
   { id: 'ctrla', cat: 'metin', keys: ['ctrl', 'a'], alt: [['ctrl', 'e']], ad: 'Start / end of line (secret route)', d: 'Old-school start / end of line that works everywhere, Terminal included.' },
   { id: 'ctrlk', cat: 'metin', keys: ['ctrl', 'k'], ad: 'Cut to end of line', d: 'Cuts from the cursor to the end of the line. ⌃Y pastes it back.' },
   { id: 'ctrlt', cat: 'metin', keys: ['ctrl', 't'], ad: 'Swap two letters', d: 'Swaps the letters on either side of the cursor. A typo lifesaver.' },
-  { id: 'define', cat: 'metin', keys: ['ctrl', 'cmd', 'd'], ad: 'Look Up', d: 'Shows the definition of the word under the pointer.' },
+  { id: 'define', cat: 'metin', keys: ['ctrl', 'cmd', 'd'], ad: 'Look Up', d: 'Shows the definition of the word under the pointer.', pad: "Tap the word with three fingers, or Force Click it" },
   { id: 'spell', cat: 'metin', keys: ['cmd', ';'], ad: 'Find a typo', d: 'Jumps to the next misspelled word in the document.' },
 
   // ── Emoji & special characters ───────────────────────
@@ -82,10 +82,10 @@ window.KS_SHORTCUTS = [
   { id: 'tileleft', cat: 'pencere', keys: ['fn', 'ctrl', 'left'], alt: [['fn', 'ctrl', 'right']], ad: 'Tile window left / right', d: 'Split the screen in two (macOS 15 and later). fn⌃↑ / fn⌃↓ for top / bottom half.' },
   { id: 'tilefill', cat: 'pencere', keys: ['fn', 'ctrl', 'f'], ad: 'Fill the screen', d: 'The window fills the screen (without going full screen). fn⌃C centers it.' },
   { id: 'tilerestore', cat: 'pencere', keys: ['fn', 'ctrl', 'r'], ad: 'Return to previous size', d: 'Puts a tiled window back to the size it was.' },
-  { id: 'missionctl', cat: 'pencere', keys: ['ctrl', 'up'], ad: 'Mission Control', d: 'A bird’s-eye view of every open window and desktop.' },
-  { id: 'appexpose', cat: 'pencere', keys: ['ctrl', 'down'], ad: 'App windows', d: 'Shows all windows of the app in front, side by side.' },
-  { id: 'spaces', cat: 'pencere', keys: ['ctrl', 'left'], alt: [['ctrl', 'right']], ad: 'Switch desktops', d: 'Slides between desktops (Spaces) and full-screen apps.' },
-  { id: 'showdesktop', cat: 'pencere', keys: ['fn', 'h'], ad: 'Show Desktop', d: 'Shoves every window aside to reveal the desktop.' },
+  { id: 'missionctl', cat: 'pencere', keys: ['ctrl', 'up'], ad: 'Mission Control', d: 'A bird’s-eye view of every open window and desktop.', pad: "Swipe up with three (or four) fingers" },
+  { id: 'appexpose', cat: 'pencere', keys: ['ctrl', 'down'], ad: 'App windows', d: 'Shows all windows of the app in front, side by side.', pad: "Swipe down with three (or four) fingers" },
+  { id: 'spaces', cat: 'pencere', keys: ['ctrl', 'left'], alt: [['ctrl', 'right']], ad: 'Switch desktops', d: 'Slides between desktops (Spaces) and full-screen apps.', pad: "Swipe left / right with three (or four) fingers" },
+  { id: 'showdesktop', cat: 'pencere', keys: ['fn', 'h'], ad: 'Show Desktop', d: 'Shoves every window aside to reveal the desktop.', pad: "Spread your thumb and three fingers apart" },
 
   // ── System & screenshots ─────────────────────────────
   { id: 'spotlight', cat: 'sistem', keys: ['cmd', 'space'], ad: 'Spotlight', d: 'Open apps, find files, do math, convert units. Your Mac’s command center.', pop: true },
@@ -99,16 +99,16 @@ window.KS_SHORTCUTS = [
   { id: 'logout', cat: 'sistem', keys: ['shift', 'cmd', 'q'], ad: 'Log Out', d: 'Logs you out, after asking first.' },
   { id: 'dockhide', cat: 'sistem', keys: ['opt', 'cmd', 'd'], ad: 'Hide / show the Dock', d: 'Toggles Dock auto-hiding. Free screen space.' },
   { id: 'fnquicknote', cat: 'sistem', keys: ['fn', 'q'], ad: 'Quick Note', d: 'Pops up a small note on top of whatever app you’re in.' },
-  { id: 'fnnotif', cat: 'sistem', keys: ['fn', 'n'], ad: 'Notification Center', d: 'Opens notifications and widgets.' },
+  { id: 'fnnotif', cat: 'sistem', keys: ['fn', 'n'], ad: 'Notification Center', d: 'Opens notifications and widgets.', pad: "Swipe left from the right edge with two fingers" },
   { id: 'fncontrol', cat: 'sistem', keys: ['fn', 'c'], ad: 'Control Center', d: 'Wi-Fi, Bluetooth, sound and brightness controls.' },
   { id: 'fndock', cat: 'sistem', keys: ['fn', 'a'], ad: 'Show the Dock', d: 'Summons a hidden Dock.' },
-  { id: 'fnapps', cat: 'sistem', keys: ['fn', 'shift', 'a'], ad: 'Apps', d: 'Opens the Apps view (formerly known as Launchpad).' },
+  { id: 'fnapps', cat: 'sistem', keys: ['fn', 'shift', 'a'], ad: 'Apps', d: 'Opens the Apps view (formerly known as Launchpad).', pad: "Pinch with your thumb and three fingers" },
   { id: 'fndictation', cat: 'sistem', keys: ['fn', 'd'], ad: 'Dictation', d: 'Starts / stops typing with your voice.' },
   { id: 'volfine', cat: 'sistem', keys: ['opt', 'shift', 'vol'], ad: 'Fine-tune the volume', d: 'Changes volume in quarter steps. Works with the brightness keys too.' },
   { id: 'volsettings', cat: 'sistem', keys: ['opt', 'vol'], ad: 'Open Sound settings', d: '⌥ + a volume key opens Sound settings, ⌥ + brightness opens Displays.' },
 
   // ── Finder ───────────────────────────────────────────
-  { id: 'quicklook', cat: 'finder', keys: ['space'], ad: 'Quick Look', d: 'Previews a file without opening it. PDFs, videos, images… all of it.', pop: true },
+  { id: 'quicklook', cat: 'finder', keys: ['space'], ad: 'Quick Look', d: 'Previews a file without opening it. PDFs, videos, images… all of it.', pop: true, pad: "Force Click the file" },
   { id: 'hidden', cat: 'finder', keys: ['shift', 'cmd', '.'], ad: 'Show hidden files', d: 'Shows / hides hidden files like .env and .git.', pop: true },
   { id: 'trash', cat: 'finder', keys: ['cmd', 'delete'], ad: 'Move to Trash', d: 'Sends the selected file to the Trash.' },
   { id: 'emptytrash', cat: 'finder', keys: ['shift', 'cmd', 'delete'], ad: 'Empty Trash', d: 'Empties the Trash, after asking first.' },
@@ -135,13 +135,13 @@ window.KS_SHORTCUTS = [
   { id: 'reload', cat: 'tarayici', keys: ['cmd', 'r'], ad: 'Reload', d: 'Reloads the page. ⇧⌘R skips the cache.' },
   { id: 'nexttab', cat: 'tarayici', keys: ['ctrl', 'tab'], alt: [['ctrl', 'shift', 'tab']], ad: 'Next / previous tab', d: 'Cycles through your tabs in order.' },
   { id: 'tabn', cat: 'tarayici', keys: ['cmd', '1'], ad: 'Go to tab N', d: '⌘1…⌘8 jump to that tab, ⌘9 jumps to the last one.' },
-  { id: 'zoom', cat: 'tarayici', keys: ['cmd', '+'], alt: [['cmd', '-'], ['cmd', '0']], ad: 'Zoom in / out', d: 'Makes the page bigger or smaller. ⌘0 resets.' },
+  { id: 'zoom', cat: 'tarayici', keys: ['cmd', '+'], alt: [['cmd', '-'], ['cmd', '0']], ad: 'Zoom in / out', d: 'Makes the page bigger or smaller. ⌘0 resets.', pad: "Pinch with two fingers" },
   { id: 'cmdclick', cat: 'tarayici', keys: ['cmd', 'click'], ad: 'Open link in a background tab', d: 'Opens the link in a new tab without leaving the page you’re reading.' },
   { id: 'bookmark', cat: 'tarayici', keys: ['cmd', 'd'], ad: 'Bookmark', d: 'Adds the page to your bookmarks.' },
   { id: 'history', cat: 'tarayici', keys: ['cmd', 'y'], ad: 'History', d: 'Opens your browsing history.' },
   { id: 'private', cat: 'tarayici', keys: ['shift', 'cmd', 'n'], ad: 'Private window', d: 'Opens a private / incognito window.' },
   { id: 'devtools', cat: 'tarayici', keys: ['opt', 'cmd', 'i'], ad: 'Developer tools', d: 'Opens the page’s code and the console.' },
-  { id: 'browserback', cat: 'tarayici', keys: ['cmd', 'left'], alt: [['cmd', 'right']], ad: 'Back / forward', d: 'Goes to the previous / next page (when you’re not in a text field). ⌘[ / ⌘] work too.' },
+  { id: 'browserback', cat: 'tarayici', keys: ['cmd', 'left'], alt: [['cmd', 'right']], ad: 'Back / forward', d: 'Goes to the previous / next page (when you’re not in a text field). ⌘[ / ⌘] work too.', pad: "Swipe left / right with two fingers" },
   { id: 'tabarrows', cat: 'tarayici', keys: ['opt', 'cmd', 'right'], alt: [['opt', 'cmd', 'left']], ad: 'Next / previous tab (arrows)', d: 'Moves between tabs with the arrow keys in Chrome and Safari.' },
 
   // ── Accessibility ────────────────────────────────────
@@ -170,8 +170,8 @@ window.KS_CHAPTERS = [
   { id: 'sart', ad: 'Can’t live without', alt: 'The “whoa” ones, right up front' },
   { id: 'gunluk', ad: 'Daily speed', alt: 'The ones you’ll hit dozens of times a day' },
   { id: 'ekran', ad: 'Screen master', alt: 'Screenshots, windows, tabs' },
-  { id: 'finder', ad: 'Finder break', alt: 'Files (try these in Finder)' },
-  { id: 'merakli', ad: 'For the curious', alt: 'Few people know these. You’ll survive without them' }
+  { id: 'merakli', ad: 'For the curious', alt: 'Few people know these. You’ll survive without them' },
+  { id: 'finder', ad: "Try these yourself", alt: "The browser can’t see them; try, then hit Space" }
 ];
 
 const KS_LOREM = 'Two keys beat reaching for the mouse, hundreds of times a day.';
@@ -252,11 +252,11 @@ window.KS_LESSONS = [
  * To change the order, just edit this list. A lesson that isn't listed isn't shown.
  */
 window.KS_ORDER = {
-  sart: ['l-copy', 'l-paste', 'l-emoji', 'l-spotlight', 'l-ssclip', 'l-undo', 'l-redo', 'l-delword', 'l-wordjump', 'l-cmdtab', 'l-closewin', 'l-reopen', 'l-quit', 'l-forcequit'],
+  sart: ['l-copy', 'l-paste', 'l-emoji', 'l-spotlight', 'l-ssclip', 'l-undo', 'l-redo', 'l-delword', 'l-wordjump', 'l-cmdtab', 'l-closewin', 'l-reopen', 'l-forcequit'],
   gunluk: ['l-linestart', 'l-delline', 'l-selword', 'l-selline', 'l-selectall', 'l-cut', 'l-find', 'l-newtab', 'l-address', 'l-cmdclick', 'l-cmdtick', 'l-lock', 'l-hide'],
-  ekran: ['l-ssarea', 'l-sswindow', 'l-sstool', 'l-fullscreen', 'l-tile', 'l-mission', 'l-nexttab', 'l-reload', 'l-zoom', 'l-docstart', 'l-fwddel', 'l-settings'],
-  finder: ['l-quicklook', 'l-move', 'l-rename', 'l-trash', 'l-hidden', 'l-goto', 'l-copypath'],
-  merakli: ['l-applelogo', 'l-private', 'l-minimize', 'l-spaces', 'l-fn', 'l-volfine', 'l-ctrlae', 'l-ctrlt', 'l-pasteplain']
+  ekran: ['l-sstool', 'l-fullscreen', 'l-tile', 'l-nexttab', 'l-reload', 'l-zoom', 'l-docstart', 'l-fwddel', 'l-settings'],
+  merakli: ['l-applelogo', 'l-private', 'l-minimize', 'l-ctrlae', 'l-ctrlt', 'l-pasteplain', 'l-copypath'],
+  finder: ['l-quit', 'l-ssarea', 'l-sswindow', 'l-mission', 'l-spaces', 'l-fn', 'l-volfine', 'l-quicklook', 'l-move', 'l-rename', 'l-trash', 'l-hidden', 'l-goto']
 };
 (function () {
   const byId = Object.fromEntries(window.KS_LESSONS.map(l => [l.id, l]));

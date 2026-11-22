@@ -50,7 +50,7 @@ window.KS_SHORTCUTS = [
   { id: 'ctrla', cat: 'metin', keys: ['ctrl', 'a'], alt: [['ctrl', 'e']], ad: 'Satır başı / sonu (gizli yol)', d: 'Terminal dahil her yerde çalışan eski usul satır başı / sonu.' },
   { id: 'ctrlk', cat: 'metin', keys: ['ctrl', 'k'], ad: 'Satır sonuna kadar kes', d: 'İmleçten satır sonuna kadar keser. ⌃Y ile geri yapıştırırsın.' },
   { id: 'ctrlt', cat: 'metin', keys: ['ctrl', 't'], ad: 'Harflerin yerini değiştir', d: 'İmlecin iki yanındaki harfleri takas eder. Yazım hatası kurtarıcı.' },
-  { id: 'define', cat: 'metin', keys: ['ctrl', 'cmd', 'd'], ad: 'Sözlükte bak', d: 'İmlecin altındaki kelimenin tanımını gösterir.' },
+  { id: 'define', cat: 'metin', keys: ['ctrl', 'cmd', 'd'], ad: 'Sözlükte bak', d: 'İmlecin altındaki kelimenin tanımını gösterir.', pad: "Kelimeye üç parmakla dokun ya da sert bas" },
   { id: 'spell', cat: 'metin', keys: ['cmd', ';'], ad: 'Yazım hatası bul', d: 'Belgedeki bir sonraki yanlış yazılmış kelimeye gider.' },
 
   // ── Emoji & özel karakter ────────────────────────────
@@ -83,10 +83,10 @@ window.KS_SHORTCUTS = [
   { id: 'tileleft', cat: 'pencere', keys: ['fn', 'ctrl', 'left'], alt: [['fn', 'ctrl', 'right']], ad: 'Pencereyi sola / sağa yasla', d: 'Ekranı ikiye böl (macOS 15 ve sonrası). fn⌃↑ / fn⌃↓ üst / alt yarı.' },
   { id: 'tilefill', cat: 'pencere', keys: ['fn', 'ctrl', 'f'], ad: 'Pencereyi ekrana yay', d: 'Pencere ekranı doldurur (tam ekran olmadan). fn⌃C ortalar.' },
   { id: 'tilerestore', cat: 'pencere', keys: ['fn', 'ctrl', 'r'], ad: 'Önceki boyuta dön', d: 'Yasladığın pencereyi eski boyutuna döndürür.' },
-  { id: 'missionctl', cat: 'pencere', keys: ['ctrl', 'up'], ad: 'Mission Control', d: 'Tüm açık pencereleri ve masaüstlerini kuşbakışı gösterir.' },
-  { id: 'appexpose', cat: 'pencere', keys: ['ctrl', 'down'], ad: 'Uygulamanın pencereleri', d: 'Öndeki uygulamanın tüm pencerelerini yan yana gösterir.' },
-  { id: 'spaces', cat: 'pencere', keys: ['ctrl', 'left'], alt: [['ctrl', 'right']], ad: 'Masaüstü değiştir', d: 'Masaüstleri (Spaces) ve tam ekran uygulamalar arasında kayar.' },
-  { id: 'showdesktop', cat: 'pencere', keys: ['fn', 'h'], ad: 'Masaüstünü göster', d: 'Tüm pencereleri kenara iter, masaüstünü gösterir.' },
+  { id: 'missionctl', cat: 'pencere', keys: ['ctrl', 'up'], ad: 'Mission Control', d: 'Tüm açık pencereleri ve masaüstlerini kuşbakışı gösterir.', pad: "Üç (ya da dört) parmakla yukarı kaydır" },
+  { id: 'appexpose', cat: 'pencere', keys: ['ctrl', 'down'], ad: 'Uygulamanın pencereleri', d: 'Öndeki uygulamanın tüm pencerelerini yan yana gösterir.', pad: "Üç (ya da dört) parmakla aşağı kaydır" },
+  { id: 'spaces', cat: 'pencere', keys: ['ctrl', 'left'], alt: [['ctrl', 'right']], ad: 'Masaüstü değiştir', d: 'Masaüstleri (Spaces) ve tam ekran uygulamalar arasında kayar.', pad: "Üç (ya da dört) parmakla sola / sağa kaydır" },
+  { id: 'showdesktop', cat: 'pencere', keys: ['fn', 'h'], ad: 'Masaüstünü göster', d: 'Tüm pencereleri kenara iter, masaüstünü gösterir.', pad: "Başparmağını ve üç parmağını birbirinden aç" },
 
   // ── Sistem & ekran görüntüsü ─────────────────────────
   { id: 'spotlight', cat: 'sistem', keys: ['cmd', 'space'], ad: 'Spotlight', d: 'Uygulama aç, dosya bul, hesap yap, birim çevir. Mac’in komuta merkezi.', pop: true },
@@ -100,16 +100,16 @@ window.KS_SHORTCUTS = [
   { id: 'logout', cat: 'sistem', keys: ['shift', 'cmd', 'q'], ad: 'Oturumu kapat', d: 'Onay sorarak oturumu kapatır.' },
   { id: 'dockhide', cat: 'sistem', keys: ['opt', 'cmd', 'd'], ad: 'Dock’u gizle / göster', d: 'Dock’u otomatik gizlemeyi açar / kapatır. Ekranda yer kazandırır.' },
   { id: 'fnquicknote', cat: 'sistem', keys: ['fn', 'q'], ad: 'Hızlı Not', d: 'Hangi uygulamadaysan üstüne küçük bir not açar.' },
-  { id: 'fnnotif', cat: 'sistem', keys: ['fn', 'n'], ad: 'Bildirim Merkezi', d: 'Bildirimleri ve widget’ları açar.' },
+  { id: 'fnnotif', cat: 'sistem', keys: ['fn', 'n'], ad: 'Bildirim Merkezi', d: 'Bildirimleri ve widget’ları açar.', pad: "İki parmakla sağ kenardan sola kaydır" },
   { id: 'fncontrol', cat: 'sistem', keys: ['fn', 'c'], ad: 'Denetim Merkezi', d: 'Wi-Fi, Bluetooth, ses, parlaklık kontrolleri.' },
   { id: 'fndock', cat: 'sistem', keys: ['fn', 'a'], ad: 'Dock’u göster', d: 'Gizli Dock’u çağırır.' },
-  { id: 'fnapps', cat: 'sistem', keys: ['fn', 'shift', 'a'], ad: 'Uygulamalar', d: 'Uygulamalar ekranını (eski adıyla Launchpad) açar.' },
+  { id: 'fnapps', cat: 'sistem', keys: ['fn', 'shift', 'a'], ad: 'Uygulamalar', d: 'Uygulamalar ekranını (eski adıyla Launchpad) açar.', pad: "Başparmağını ve üç parmağını birleştir (kıstır)" },
   { id: 'fndictation', cat: 'sistem', keys: ['fn', 'd'], ad: 'Dikte', d: 'Konuşarak yazmayı başlatır / durdurur.' },
   { id: 'volfine', cat: 'sistem', keys: ['opt', 'shift', 'vol'], ad: 'Sesi ince ayarla', d: 'Sesi çeyrek adımlarla açar / kısar. Parlaklık tuşlarıyla da çalışır.' },
   { id: 'volsettings', cat: 'sistem', keys: ['opt', 'vol'], ad: 'Ses ayarlarını aç', d: '⌥ + ses tuşu Ses ayarlarını, ⌥ + parlaklık Ekran ayarlarını açar.' },
 
   // ── Finder ───────────────────────────────────────────
-  { id: 'quicklook', cat: 'finder', keys: ['space'], ad: 'Hızlı Bakış', d: 'Dosyayı açmadan önizler. PDF, video, görsel… hepsi.', pop: true },
+  { id: 'quicklook', cat: 'finder', keys: ['space'], ad: 'Hızlı Bakış', d: 'Dosyayı açmadan önizler. PDF, video, görsel… hepsi.', pop: true, pad: "Dosyaya sert bas (Force Click)" },
   { id: 'hidden', cat: 'finder', keys: ['shift', 'cmd', '.'], ad: 'Gizli dosyaları göster', d: '.env, .git gibi gizli dosyaları gösterir / gizler.', pop: true },
   { id: 'trash', cat: 'finder', keys: ['cmd', 'delete'], ad: 'Çöpe at', d: 'Seçili dosyayı Çöp Sepeti’ne taşır.' },
   { id: 'emptytrash', cat: 'finder', keys: ['shift', 'cmd', 'delete'], ad: 'Çöpü boşalt', d: 'Onay sorarak Çöp Sepeti’ni boşaltır.' },
@@ -136,13 +136,13 @@ window.KS_SHORTCUTS = [
   { id: 'reload', cat: 'tarayici', keys: ['cmd', 'r'], ad: 'Yenile', d: 'Sayfayı yeniler. ⇧⌘R önbelleği atlayarak.' },
   { id: 'nexttab', cat: 'tarayici', keys: ['ctrl', 'tab'], alt: [['ctrl', 'shift', 'tab']], ad: 'Sonraki / önceki sekme', d: 'Sekmeler arasında sırayla gezer.' },
   { id: 'tabn', cat: 'tarayici', keys: ['cmd', '1'], ad: 'N. sekmeye git', d: '⌘1…⌘8 o sıradaki sekmeye, ⌘9 son sekmeye atlar.' },
-  { id: 'zoom', cat: 'tarayici', keys: ['cmd', '+'], alt: [['cmd', '-'], ['cmd', '0']], ad: 'Yakınlaştır / uzaklaştır', d: 'Sayfayı büyütür, küçültür. ⌘0 sıfırlar.' },
+  { id: 'zoom', cat: 'tarayici', keys: ['cmd', '+'], alt: [['cmd', '-'], ['cmd', '0']], ad: 'Yakınlaştır / uzaklaştır', d: 'Sayfayı büyütür, küçültür. ⌘0 sıfırlar.', pad: "İki parmağını aç / kıstır" },
   { id: 'cmdclick', cat: 'tarayici', keys: ['cmd', 'click'], ad: 'Linki arka sekmede aç', d: 'Okuduğun sayfadan çıkmadan linki yeni sekmede açar.' },
   { id: 'bookmark', cat: 'tarayici', keys: ['cmd', 'd'], ad: 'Yer imi ekle', d: 'Sayfayı yer imlerine ekler.' },
   { id: 'history', cat: 'tarayici', keys: ['cmd', 'y'], ad: 'Geçmiş', d: 'Tarayıcı geçmişini açar.' },
   { id: 'private', cat: 'tarayici', keys: ['shift', 'cmd', 'n'], ad: 'Gizli pencere', d: 'Gizli / özel tarama penceresi açar.' },
   { id: 'devtools', cat: 'tarayici', keys: ['opt', 'cmd', 'i'], ad: 'Geliştirici araçları', d: 'Sayfanın kodunu ve konsolu açar.' },
-  { id: 'browserback', cat: 'tarayici', keys: ['cmd', 'left'], alt: [['cmd', 'right']], ad: 'Geri / ileri', d: 'Önceki / sonraki sayfaya gider (metin kutusunda değilken). ⌘[ / ⌘] de olur.' },
+  { id: 'browserback', cat: 'tarayici', keys: ['cmd', 'left'], alt: [['cmd', 'right']], ad: 'Geri / ileri', d: 'Önceki / sonraki sayfaya gider (metin kutusunda değilken). ⌘[ / ⌘] de olur.', pad: "İki parmakla sola / sağa kaydır" },
   { id: 'tabarrows', cat: 'tarayici', keys: ['opt', 'cmd', 'right'], alt: [['opt', 'cmd', 'left']], ad: 'Sonraki / önceki sekme (oklarla)', d: 'Chrome ve Safari’de sekmeler arasında oklarla gezer.' },
 
   // ── Erişilebilirlik ─────────────────────────────────
@@ -171,8 +171,8 @@ window.KS_CHAPTERS = [
   { id: 'sart', ad: 'Olmazsa olmaz', alt: 'Bilince “vay” dediklerin, en başta' },
   { id: 'gunluk', ad: 'Günlük hız', alt: 'Her gün onlarca kez basacakların' },
   { id: 'ekran', ad: 'Ekran ustası', alt: 'Ekran görüntüsü, pencere, sekme' },
-  { id: 'finder', ad: 'Finder molası', alt: 'Dosyalar (Finder’da denenir)' },
-  { id: 'merakli', ad: 'Meraklısına', alt: 'Bilen az, bilmesen de olur' }
+  { id: 'merakli', ad: 'Meraklısına', alt: 'Bilen az, bilmesen de olur' },
+  { id: 'finder', ad: "Elle denenecekler", alt: "Tarayıcı göremiyor; dene, Space ile geç" }
 ];
 
 const KS_LOREM = 'Fareye uzanmak yerine iki tuşa basmak, günde yüzlerce saniye demek.';
@@ -258,11 +258,11 @@ window.KS_LESSONS = [
  * Sırayı değiştirmek için sadece bu listeyi düzenle. Listede olmayan ders gösterilmez.
  */
 window.KS_ORDER = {
-  sart: ['l-copy', 'l-paste', 'l-emoji', 'l-at', 'l-spotlight', 'l-ssclip', 'l-undo', 'l-redo', 'l-delword', 'l-wordjump', 'l-cmdtab', 'l-closewin', 'l-reopen', 'l-quit', 'l-forcequit'],
+  sart: ['l-copy', 'l-paste', 'l-emoji', 'l-at', 'l-spotlight', 'l-ssclip', 'l-undo', 'l-redo', 'l-delword', 'l-wordjump', 'l-cmdtab', 'l-closewin', 'l-reopen', 'l-forcequit'],
   gunluk: ['l-linestart', 'l-delline', 'l-selword', 'l-selline', 'l-selectall', 'l-cut', 'l-find', 'l-newtab', 'l-address', 'l-cmdclick', 'l-hash', 'l-lira', 'l-lock', 'l-hide'],
-  ekran: ['l-ssarea', 'l-sswindow', 'l-sstool', 'l-fullscreen', 'l-tile', 'l-mission', 'l-nexttab', 'l-reload', 'l-zoom', 'l-docstart', 'l-fwddel', 'l-settings'],
-  finder: ['l-quicklook', 'l-move', 'l-rename', 'l-trash', 'l-hidden', 'l-goto', 'l-copypath'],
-  merakli: ['l-brackets', 'l-curly', 'l-private', 'l-minimize', 'l-spaces', 'l-fn', 'l-volfine', 'l-ctrlae', 'l-ctrlt', 'l-pasteplain']
+  ekran: ['l-sstool', 'l-fullscreen', 'l-tile', 'l-nexttab', 'l-reload', 'l-zoom', 'l-docstart', 'l-fwddel', 'l-settings'],
+  merakli: ['l-brackets', 'l-curly', 'l-private', 'l-minimize', 'l-ctrlae', 'l-ctrlt', 'l-pasteplain', 'l-copypath'],
+  finder: ['l-quit', 'l-ssarea', 'l-sswindow', 'l-mission', 'l-spaces', 'l-fn', 'l-volfine', 'l-quicklook', 'l-move', 'l-rename', 'l-trash', 'l-hidden', 'l-goto']
 };
 (function () {
   const byId = Object.fromEntries(window.KS_LESSONS.map(l => [l.id, l]));

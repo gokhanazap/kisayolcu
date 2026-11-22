@@ -8,6 +8,9 @@
   const LANG = document.documentElement.lang === 'en' ? 'en' : 'tr';
   const EN = {
    "sonra": "then",
+   "Trackpad’le:": "On the trackpad:",
+   "Anladım": "Got it",
+   "Yaptım": "Done",
    "veya": "or",
    "Kısayolcu Mac klavyesi için. Linki Mac’ine gönder, orada dene 💻": "Kısayolcu needs a Mac keyboard. Send the link to your Mac and try it there 💻",
    "Mac kısayollarını deneyerek öğren": "Learn Mac shortcuts by pressing them",

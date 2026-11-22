@@ -112,6 +112,10 @@
     $('bigKeys').innerHTML = renderShortcut(sc);
     $('title').textContent = sc.ad;
     $('desc').textContent = sc.d;
+    let pad = document.getElementById('padNote');
+    if (!pad) { pad = document.createElement('p'); pad.id = 'padNote'; pad.className = 'pad-note'; $('bigKeys').after(pad); }
+    pad.hidden = !sc.pad;
+    pad.innerHTML = sc.pad ? '<span class="pad-ic">🖐</span> <b>' + t('Trackpad’le:') + '</b> ' + esc(sc.pad) : '';
     $('trNote').hidden = !sc.tr;
     $('trNote').textContent = sc.tr ? (window.KS.LANG === 'en' ? '⌨️ ' : '🇹🇷 ') + sc.tr : '';
     $('task').innerHTML = prettyText(l.gorev);
@@ -308,7 +312,7 @@
       case 'info': {
         const b = document.createElement('button');
         b.type = 'button'; b.className = 'btn btn-sm btn-dark';
-        b.textContent = c.type === 'info' ? t('Anladım ↩') : t('Yaptım ↩');
+        b.innerHTML = (c.type === 'info' ? t('Anladım') : t('Yaptım')) + ' <span class="kbd-hint">space</span>';
         requestAnimationFrame(() => b.focus({ preventScroll: true }));
         b.onclick = () => success(true);
         setStatus(c.type === 'manual' ? '<span class="muted">' + t('Bunu tarayıcı göremiyor, dürüstlüğüne güveniyoruz 🤝') + '</span>' : '');
@@ -385,6 +389,14 @@
   // Esc = geç, Enter = devam
   document.addEventListener('keydown', e => {
     if ($('stage').hidden || e.metaKey || e.altKey || e.ctrlKey) return;
+    // Space: doğrulanamayan derste "Yaptım", diğerlerinde "geç" (yazı alanı ya da buton odaktaysa dokunma)
+    if (e.key === ' ' && !solved && !e.shiftKey && !e.repeat && !e.target.closest('input,textarea,[contenteditable],a,button,summary,select')) {
+      e.preventDefault();
+      if (performance.now() - lessonT0 < 300) return;
+      const ty = LESSONS[cur].check.type;
+      if (ty === 'manual' || ty === 'info') success(true); else $('skip').click();
+      return;
+    }
     if (e.key === 'Escape' && !solved) { e.preventDefault(); if (performance.now() - lessonT0 > 300) $('skip').click(); return; }
     if (e.key === 'Enter' && solved && !e.shiftKey) {
       // Linkler, butonlar ve deneme alanı dışındaki form öğeleri Enter’ı kendisi kullansın
