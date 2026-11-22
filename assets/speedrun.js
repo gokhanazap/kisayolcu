@@ -40,6 +40,7 @@
 
   function show(id) {
     ['intro', 'count', 'game', 'result'].forEach(s => { $(s).hidden = s !== id; });
+    document.querySelector('main.run').classList.toggle('is-intro', id === 'intro');
     const bw = document.getElementById('boardWrap');
     if (bw && (id === 'count' || id === 'game')) bw.hidden = true;
   }
@@ -264,9 +265,19 @@
   }
   let boardAll = false, boardData = null;
   function loadBoard() {
-    fetch('/api/scores').then(r => r.json()).then(d => { boardData = d; renderBoard(d, store.get('name', '')); if (location.hash === '#board' && state === 'intro') { boardAll = true; renderBoard(d, store.get('name', '')); $('boardWrap').scrollIntoView({ block: 'start' }); } }).catch(() => { $('boardWrap').hidden = true; });
+    fetch('/api/scores').then(r => r.json()).then(d => { boardData = d; renderBoard(d, store.get('name', '')); if (location.hash === '#board' && state === 'intro') focusBoard(); }).catch(() => { $('boardWrap').hidden = true; });
   }
-  window.addEventListener('hashchange', () => { if (location.hash === '#board' && boardData && state !== 'run' && state !== 'count') { boardAll = true; renderBoard(boardData, store.get('name', '')); $('boardWrap').scrollIntoView({ block: 'start' }); } });
+  function focusBoard() {
+    if (!boardData || state === 'run' || state === 'count') return;
+    boardAll = true; renderBoard(boardData, store.get('name', ''));
+    const w = $('boardWrap');
+    // Yerleşim otursun diye bir kare bekle (Safari), sonra kaydır ve vurgula
+    requestAnimationFrame(() => setTimeout(() => {
+      w.scrollIntoView({ block: 'start' });
+      w.classList.remove('flash'); void w.offsetWidth; w.classList.add('flash');
+    }, 60));
+  }
+  window.addEventListener('hashchange', () => { if (location.hash === '#board') focusBoard(); });
   $('boardMore').addEventListener('click', () => { boardAll = true; renderBoard(boardData, store.get('name', '')); });
 
   function setupSubmit() {

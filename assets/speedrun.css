@@ -120,3 +120,14 @@ body.dark .eyebrow { color: var(--lcd); }
 @media (max-width: 560px) { .board .rk { display: none; } .board li { grid-template-columns: 36px 1fr auto; } }
 
 .board-wrap { scroll-margin-top: 84px; }
+
+/* Giriş ekranında sıralama yanda, her zaman görünür */
+@media (min-width: 1000px) {
+  main.run.is-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, 440px); gap: 56px; align-items: start; }
+  main.run.is-intro .board-wrap { margin-top: 0; }
+  main.run.is-intro .board .rk { display: none; }
+  main.run.is-intro .board li { grid-template-columns: 36px 1fr auto; padding: 9px 14px; }
+  main.run.is-intro .run-title { font-size: clamp(40px, 5vw, 72px); }
+}
+.board-wrap.flash { animation: bflash 1.2s ease-out; border-radius: 16px; }
+@keyframes bflash { 0% { box-shadow: 0 0 0 4px rgba(214,255,61,.55); } 100% { box-shadow: 0 0 0 4px rgba(214,255,61,0); } }
