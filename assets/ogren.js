@@ -121,6 +121,7 @@
     $('task').innerHTML = prettyText(l.gorev);
     $('next').hidden = true;
     $('skip').hidden = false;
+    { const h = $('skip').querySelector('.kbd-hint'); if (h) h.textContent = (l.check.type === 'manual' || l.check.type === 'info') ? 'esc' : 'space'; }
     $('prev').disabled = cur === 0;
     renderSide();
     save();
