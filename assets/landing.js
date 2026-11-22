@@ -204,7 +204,7 @@
 
   // ── Mac değilse: linki Mac’e gönder ────────────────
   if (!isMac()) {
-    $('#heroCta').innerHTML = '<button class="btn btn-primary" type="button" id="toMac">' + t('💻 Linki Mac’ime gönder') + '</button><a class="btn" href="' + PATHS.list + '">' + t('Listeye göz at') + '</a><p class="note">' + t('Alıştırmalar Mac klavyesiyle çalışıyor. Telefondaysan linki kendine at, Mac’te aç.') + '</p>';
+    $('#heroCta').innerHTML = '<button class="btn btn-primary" type="button" id="toMac">' + t('💻 Linki Mac’ime gönder') + '</button><a class="btn" href="speedrun#board">🏆 ' + (EN ? 'Leaderboard' : 'Sıralama') + '</a><a class="btn" href="' + PATHS.list + '">' + t('Listeye göz at') + '</a><p class="note">' + t('Alıştırmalar Mac klavyesiyle çalışıyor. Telefondaysan linki kendine at, Mac’te aç.') + '</p>';
     $('#toMac').addEventListener('click', sendToMac);
   }
 })();
