@@ -11,6 +11,7 @@
   let cur = Math.min(store.get('cur', 0), LESSONS.length - 1);
   let solved = false;
   let cleanups = [];
+  let lessonT0 = 0;
   const openCh = new Set();
   const save = () => { store.set('progress', prog); store.set('cur', cur); };
 
@@ -100,7 +101,7 @@
   // ── Ders çiz ───────────────────────────────────────
   function render() {
     cleanups.forEach(f => f()); cleanups = [];
-    solved = false;
+    solved = false; lessonT0 = performance.now();
     const l = LESSONS[cur], sc = SC[l.sc], ch = CH.find(c => c.id === l.ch);
     $('finish').hidden = true; $('stage').hidden = false;
     $('stage').classList.remove('solved');
@@ -331,7 +332,9 @@
       toast(`🎉 “${esc(ch.ad)}” bölümü tamam! ${chLs.length}/${chLs.length}`, 'ok');
     }
     const msg = manual ? 'Not edildi ✓' : '✓ ' + PRAISE[Math.floor(Math.random() * PRAISE.length)];
-    setStatus(`<span class="ok">${msg}</span><span class="muted">↩ ile devam</span>`);
+    setStatus(`<span class="ok">${msg}</span><span class="muted auto-next">sıradaki geliyor…</span>`);
+    // Otomatik geçiş: doğru yapınca kısa bir kutlamadan sonra sıradaki derse geç
+    later(() => { if (solved) go(nextIndex()); }, manual ? 500 : 1400);
     $('skip').hidden = true;
     $('next').hidden = false;
     renderSide();
@@ -378,7 +381,7 @@
   // Esc = geç, Enter = devam
   document.addEventListener('keydown', e => {
     if ($('stage').hidden || e.metaKey || e.altKey || e.ctrlKey) return;
-    if (e.key === 'Escape' && !solved) { e.preventDefault(); $('skip').click(); return; }
+    if (e.key === 'Escape' && !solved) { e.preventDefault(); if (performance.now() - lessonT0 > 300) $('skip').click(); return; }
     if (e.key === 'Enter' && solved && !e.shiftKey) {
       // Linkler, butonlar ve deneme alanı dışındaki form öğeleri Enter’ı kendisi kullansın
       if (e.target.closest('a,button,summary,select') || (e.target.closest('input,textarea') && !e.target.closest('.practice'))) return;
@@ -395,6 +398,13 @@
     sessionStorage.removeItem('ks-reload');
   } catch (_) {}
 
+  if (!window.KS.isMac()) {
+    const n = document.createElement('div');
+    n.className = 'nomac card';
+    n.innerHTML = '<b>Alıştırmalar Mac klavyesiyle çalışıyor.</b> Linki kendine at, Mac’te aç. <button class="btn btn-primary btn-sm" type="button">💻 Linki Mac’ime gönder</button>';
+    n.querySelector('button').addEventListener('click', window.KS.sendToMac);
+    $('stage').before(n);
+  }
   $('stage').tabIndex = -1;
   render();
 })();

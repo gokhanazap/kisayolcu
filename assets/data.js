@@ -168,13 +168,11 @@ window.KS_SHORTCUTS = [
  *  info      : sadece bilgi, “Anladım”
  */
 window.KS_CHAPTERS = [
-  { id: 'temel', ad: 'Temeller', alt: 'Kopyala, yapıştır ve hayat kurtaranlar' },
-  { id: 'emoji', ad: 'Emoji & özel karakter', alt: 'Tweet’teki o emoji meselesi' },
-  { id: 'metin', ad: 'Metinde uçmak', alt: 'İmleç artık senin' },
-  { id: 'pencere', ad: 'Pencere & uygulama', alt: 'Geç, gizle, kapat, döşe' },
-  { id: 'sistem', ad: 'Sistem & ekran görüntüsü', alt: 'Mac’in süper güçleri' },
-  { id: 'tarayici', ad: 'Tarayıcı', alt: 'Sekme ustası ol' },
-  { id: 'finder', ad: 'Finder', alt: 'Dosyalar (Finder’da denenir)' }
+  { id: 'sart', ad: 'Olmazsa olmaz', alt: 'Bilince “vay” dediklerin, en başta' },
+  { id: 'gunluk', ad: 'Günlük hız', alt: 'Her gün onlarca kez basacakların' },
+  { id: 'ekran', ad: 'Ekran ustası', alt: 'Ekran görüntüsü, pencere, sekme' },
+  { id: 'finder', ad: 'Finder molası', alt: 'Dosyalar (Finder’da denenir)' },
+  { id: 'merakli', ad: 'Meraklısına', alt: 'Bilen az, bilmesen de olur' }
 ];
 
 const KS_LOREM = 'Fareye uzanmak yerine iki tuşa basmak, günde yüzlerce saniye demek.';
@@ -190,10 +188,10 @@ window.KS_LESSONS = [
   { id: 'l-find', ch: 'temel', sc: 'find', gorev: '⌘F ile arama aç. (Bu sayfada arama çubuğunu biz yakalıyoruz.)', practice: { kind: 'none' }, check: { type: 'combo', combos: ['cmd+f'], prevent: true } },
   { id: 'l-save', ch: 'temel', sc: 'save', gorev: '⌘S ile kaydet. Merak etme, bir şey indirmeyeceğiz.', practice: { kind: 'none' }, check: { type: 'combo', combos: ['cmd+s'], prevent: true } },
   { id: 'l-settings', ch: 'temel', sc: 'settings', gorev: '⌘, ile tarayıcının ayarlarını aç, sonra ⌘W ile kapatıp buraya dön.', practice: { kind: 'none' }, check: { type: 'away', mods: ['meta'] } },
-  { id: 'l-pasteplain', ch: 'temel', sc: 'pasteplain', gorev: 'Bonus: kopyaladığın bir şeyi ⌥⇧⌘V ile biçimsiz yapıştır.', practice: { kind: 'input', value: '', placeholder: 'biçimsiz yapıştır…' }, check: { type: 'combo', combos: ['alt+shift+cmd+v'] } },
+  { id: 'l-pasteplain', ch: 'temel', sc: 'pasteplain', gorev: 'Bir yazı kopyala, ⌥⇧⌘V ile yapıştır: font ve renk gelmez.', practice: { kind: 'input', value: '', placeholder: 'biçimsiz yapıştır…' }, check: { type: 'combo', combos: ['alt+shift+cmd+v'] } },
 
   // Emoji
-  { id: 'l-emoji', ch: 'emoji', sc: 'emoji', gorev: '⌃⌘Space (ya da fn/🌐 + E) ile emoji panelini aç ve kutuya bir emoji ekle.', practice: { kind: 'input', value: '', placeholder: 'buraya bir emoji 👀' }, check: { type: 'emoji' } },
+  { id: 'l-emoji', ch: 'emoji', sc: 'emoji', gorev: '⌃⌘Space’e bas, bir emoji seç. (🌐 tuşu da açar.)', practice: { kind: 'input', value: '', placeholder: 'buraya bir emoji 👀' }, check: { type: 'emoji' } },
   { id: 'l-at', ch: 'emoji', sc: 'at', gorev: 'Kutuya @ yaz.', practice: { kind: 'input', value: 'merhaba', select: 'end' }, check: { type: 'char', chars: ['@'] } },
   { id: 'l-hash', ch: 'emoji', sc: 'hash', gorev: 'Kutuya # yaz.', practice: { kind: 'input', value: '', placeholder: '#kısayol' }, check: { type: 'char', chars: ['#'] } },
   { id: 'l-lira', ch: 'emoji', sc: 'lira', gorev: 'Kutuya ₺ yaz. Fiyat yazarken artık “TL” yok.', practice: { kind: 'input', value: '99,90 ', select: 'end' }, check: { type: 'char', chars: ['₺'] } },
@@ -219,11 +217,11 @@ window.KS_LESSONS = [
   { id: 'l-newtab', ch: 'pencere', sc: 'newtab', gorev: '⌘T ile yeni sekme aç, sonra ⌘W ile kapatıp buraya dön.', practice: { kind: 'none' }, check: { type: 'away', mods: ['meta'] } },
   { id: 'l-hide', ch: 'pencere', sc: 'hide', gorev: '⌘H ile tarayıcıyı gizle, sonra ⌘Tab ile geri getir.', practice: { kind: 'none' }, check: { type: 'away', mods: ['meta'] } },
   { id: 'l-minimize', ch: 'pencere', sc: 'minimize', gorev: '⌘M ile pencereyi Dock’a küçült, sonra Dock’tan geri aç.', practice: { kind: 'none' }, check: { type: 'away', mods: ['meta'] } },
-  { id: 'l-quit', ch: 'pencere', sc: 'quit', gorev: 'Bunu burada deneme 😅 ⌘W pencereyi kapatır ama uygulama arkada açık kalır; ⌘Q uygulamayı tamamen kapatır. Windows’tan gelenlerin en çok karıştırdığı ikili.', practice: { kind: 'none' }, check: { type: 'info' } },
+  { id: 'l-quit', ch: 'pencere', sc: 'quit', gorev: 'Burada deneme 😅 ⌘W pencereyi kapatır, ⌘Q uygulamayı. Kırmızı çarpıya basmak Mac’te uygulamayı kapatmaz.', practice: { kind: 'none' }, check: { type: 'info' } },
   { id: 'l-forcequit', ch: 'pencere', sc: 'forcequit', gorev: '⌥⌘Esc ile Zorla Çık penceresini aç, Esc ile kapat ve geri dön. Donan uygulamalar için.', practice: { kind: 'none' }, check: { type: 'away', mods: ['meta'] } },
   { id: 'l-fullscreen', ch: 'pencere', sc: 'fullscreen', gorev: '⌃⌘F ile tam ekrana geç, tekrar basıp çık.', practice: { kind: 'none' }, check: { type: 'resize', mods: ['ctrl', 'meta'], combos: ['ctrl+cmd+f'] } },
   { id: 'l-tile', ch: 'pencere', sc: 'tileleft', gorev: 'fn⌃← ile pencereyi sola yasla, fn⌃R ile eski boyutuna döndür. (macOS 15+)', practice: { kind: 'none' }, check: { type: 'resize', mods: ['ctrl'] } },
-  { id: 'l-mission', ch: 'pencere', sc: 'missionctl', gorev: '⌃↑ ile Mission Control’ü aç, tekrar basıp kapat. ⌃↓ ile de bu uygulamanın pencerelerini gör.', practice: { kind: 'none' }, check: { type: 'manual' } },
+  { id: 'l-mission', ch: 'pencere', sc: 'missionctl', gorev: '⌃↑ ile tüm pencereleri kuşbakışı gör, tekrar basıp kapat.', practice: { kind: 'none' }, check: { type: 'manual' } },
   { id: 'l-spaces', ch: 'pencere', sc: 'spaces', gorev: 'Birden fazla masaüstün ya da tam ekran uygulaman varsa ⌃← / ⌃→ ile aralarında kay.', practice: { kind: 'none' }, check: { type: 'manual' } },
 
   // Sistem
@@ -232,9 +230,9 @@ window.KS_LESSONS = [
   { id: 'l-ssclip', ch: 'sistem', sc: 'ssclip', gorev: '⌃⇧⌘4 ile bir alanı panoya al, sonra aşağıdaki kutuya tıklayıp ⌘V ile yapıştır.', practice: { kind: 'paste' }, check: { type: 'imagePaste' } },
   { id: 'l-sswindow', ch: 'sistem', sc: 'sswindow', gorev: '⇧⌘4’e bas, sonra Space: imleç kameraya dönüşür. Bir pencereye tıkla.', practice: { kind: 'none' }, check: { type: 'manual' } },
   { id: 'l-sstool', ch: 'sistem', sc: 'sstool', gorev: '⇧⌘5 ile ekran görüntüsü ve ekran kaydı aracını aç. Esc ile kapat.', practice: { kind: 'none' }, check: { type: 'away', mods: ['meta'] } },
-  { id: 'l-lock', ch: 'sistem', sc: 'lock', gorev: 'Masadan kalkarken ⌃⌘Q. Şimdi deneyebilirsin (şifrenle geri açarsın) ya da “Yaptım” de.', practice: { kind: 'none' }, check: { type: 'away', mods: ['ctrl', 'meta'] } },
-  { id: 'l-fn', ch: 'sistem', sc: 'fnquicknote', gorev: 'fn / 🌐 tuşu süper güçleri: fn+Q Hızlı Not, fn+N Bildirimler, fn+C Denetim Merkezi, fn+A Dock. Birini dene.', practice: { kind: 'none' }, check: { type: 'manual' } },
-  { id: 'l-volfine', ch: 'sistem', sc: 'volfine', gorev: '⌥⇧ basılıyken ses tuşuna bas: ses çeyrek adımlarla değişir. Sadece ⌥ ile Ses ayarları açılır.', practice: { kind: 'none' }, check: { type: 'manual' } },
+  { id: 'l-lock', ch: 'sistem', sc: 'lock', gorev: '⌃⌘Q ile ekranı kilitle, şifrenle geri dön. (Şimdi istemiyorsan esc ile geç.)', practice: { kind: 'none' }, check: { type: 'away', mods: ['ctrl', 'meta'] } },
+  { id: 'l-fn', ch: 'sistem', sc: 'fnquicknote', gorev: 'fn+Q’ya bas: Hızlı Not açılır. (fn+N bildirimler, fn+C Denetim Merkezi.)', practice: { kind: 'none' }, check: { type: 'manual' } },
+  { id: 'l-volfine', ch: 'sistem', sc: 'volfine', gorev: '⌥⇧ basılı tut, ses tuşuna bas: ses minik adımlarla değişir.', practice: { kind: 'none' }, check: { type: 'manual' } },
 
   // Tarayıcı
   { id: 'l-address', ch: 'tarayici', sc: 'address', gorev: '⌘L ile adres çubuğuna git, sonra sayfaya geri tıkla.', practice: { kind: 'none' }, check: { type: 'away', mods: ['meta'] } },
@@ -242,7 +240,7 @@ window.KS_LESSONS = [
   { id: 'l-reload', ch: 'tarayici', sc: 'reload', gorev: '⌘R ile sayfayı yenile. Kaldığın yer kaybolmaz, söz.', practice: { kind: 'none' }, check: { type: 'reload' } },
   { id: 'l-zoom', ch: 'tarayici', sc: 'zoom', gorev: '⌘+ ile yakınlaştır, ⌘- ile uzaklaştır, ⌘0 ile sıfırla.', practice: { kind: 'none' }, check: { type: 'resize', mods: ['meta'] } },
   { id: 'l-cmdclick', ch: 'tarayici', sc: 'cmdclick', gorev: '⌘ basılıyken aşağıdaki linke tıkla: arka planda yeni sekmede açılır.', practice: { kind: 'link' }, check: { type: 'metaClick' } },
-  { id: 'l-nexttab', ch: 'tarayici', sc: 'nexttab', gorev: '⌃Tab ile sonraki sekmeye geç, ⌃⇧Tab ile buraya dön. (⌘1…⌘9 da olur.)', practice: { kind: 'none' }, check: { type: 'away', mods: ['ctrl', 'meta'] } },
+  { id: 'l-nexttab', ch: 'tarayici', sc: 'nexttab', gorev: '⌃Tab ile sonraki sekmeye geç, ⌃⇧Tab ile geri dön.', practice: { kind: 'none' }, check: { type: 'away', mods: ['ctrl', 'meta'] } },
   { id: 'l-private', ch: 'tarayici', sc: 'private', gorev: '⇧⌘N ile gizli pencere aç, ⌘W ile kapatıp dön.', practice: { kind: 'none' }, check: { type: 'away', mods: ['meta'] } },
 
   // Finder
@@ -254,3 +252,21 @@ window.KS_LESSONS = [
   { id: 'l-trash', ch: 'finder', sc: 'trash', gorev: 'Silinecek bir dosya seç, ⌘⌫ ile çöpe at. (⌘Z geri getirir!)', practice: { kind: 'none' }, check: { type: 'manual' } },
   { id: 'l-copypath', ch: 'finder', sc: 'copypath', gorev: 'Bir dosya seç, ⌥⌘C ile tam yolunu kopyala, buraya yapıştır.', practice: { kind: 'input', value: '', placeholder: '/Users/…' }, check: { type: 'char', chars: ['/'] } }
 ];
+
+/* ── Ders sırası: önem sırasına göre ───────────────────
+ * Önem = günlük hayatta kazandırdığı zaman × ne kadar az bilindiği.
+ * Sırayı değiştirmek için sadece bu listeyi düzenle. Listede olmayan ders gösterilmez.
+ */
+window.KS_ORDER = {
+  sart: ['l-copy', 'l-paste', 'l-emoji', 'l-at', 'l-spotlight', 'l-ssclip', 'l-undo', 'l-redo', 'l-delword', 'l-wordjump', 'l-cmdtab', 'l-closewin', 'l-reopen', 'l-quit', 'l-forcequit'],
+  gunluk: ['l-linestart', 'l-delline', 'l-selword', 'l-selline', 'l-selectall', 'l-cut', 'l-find', 'l-newtab', 'l-address', 'l-cmdclick', 'l-hash', 'l-lira', 'l-lock', 'l-hide'],
+  ekran: ['l-ssarea', 'l-sswindow', 'l-sstool', 'l-fullscreen', 'l-tile', 'l-mission', 'l-nexttab', 'l-reload', 'l-zoom', 'l-docstart', 'l-fwddel', 'l-settings'],
+  finder: ['l-quicklook', 'l-move', 'l-rename', 'l-trash', 'l-hidden', 'l-goto', 'l-copypath'],
+  merakli: ['l-brackets', 'l-curly', 'l-private', 'l-minimize', 'l-spaces', 'l-fn', 'l-volfine', 'l-ctrlae', 'l-ctrlt', 'l-pasteplain']
+};
+(function () {
+  const byId = Object.fromEntries(window.KS_LESSONS.map(l => [l.id, l]));
+  const out = [];
+  for (const ch in window.KS_ORDER) window.KS_ORDER[ch].forEach(id => { const l = byId[id]; if (l) { l.ch = ch; out.push(l); } });
+  window.KS_LESSONS = out;
+})();

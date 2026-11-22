@@ -96,3 +96,25 @@ body.dark .foot { border-top-color: #2b2823; }
 body.dark .foot a { color: #d8d1c3; }
 body.dark .foot .maker a { color: #fff; }
 body.dark .eyebrow { color: var(--lcd); }
+
+/* Liderlik tablosu */
+.lb-form { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 18px 0 6px; }
+.lb-form label { font-weight: 700; }
+.lb-form input { flex: 1 1 180px; min-width: 0; font: 600 17px var(--body); color: var(--paper); background: #1a1815; border: 1.5px solid #34302a; border-radius: 10px; padding: 11px 14px; outline: none; }
+.lb-form input:focus { border-color: var(--lcd); box-shadow: 0 0 0 4px rgba(214,255,61,.12); }
+.lb-msg { min-height: 1.5em; margin: 6px 0 10px; color: #d8d1c3; }
+.lb-msg b { color: var(--lcd); }
+.linkbtn { all: unset; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; color: #9a9385; font-size: 13px; }
+.linkbtn:focus-visible { outline: 2px solid var(--lcd); }
+.board-wrap { margin-top: 56px; max-width: 760px; }
+.board-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.board-head h2 { font-size: clamp(28px, 3.4vw, 40px); }
+.board { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 6px; }
+.board li { display: grid; grid-template-columns: 44px 1fr auto auto; gap: 12px; align-items: center; padding: 11px 16px; background: #1a1815; border: 1px solid #2d2a25; border-radius: 12px; }
+.board li.me { border-color: var(--lcd); box-shadow: 0 0 0 3px rgba(214,255,61,.1); }
+.board li.empty { display: block; color: #9a9385; }
+.board .pos { font: 700 16px var(--mono); color: #9a9385; text-align: center; }
+.board .nm { font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.board .rk { font-size: 13px; color: #9a9385; white-space: nowrap; }
+.board .tm { font: 700 17px var(--mono); color: var(--lcd); font-variant-numeric: tabular-nums; white-space: nowrap; }
+@media (max-width: 560px) { .board .rk { display: none; } .board li { grid-template-columns: 36px 1fr auto; } }

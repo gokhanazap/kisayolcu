@@ -1,4 +1,4 @@
-// Kullanım: node tools/prerender.js . — kisayollar.html listesini data.js’ten statik HTML olarak yeniden üretir (SEO için)
+// Kullanım: node tools/prerender.js . — kisayollar listesini data.js’ten statik HTML olarak yeniden üretir (SEO için)
 const fs = require('fs'), path = require('path');
 const dir = path.resolve(process.argv[2] || '.');
 global.window = { addEventListener() {} }; global.document = { addEventListener() {}, querySelector() { return null; } };
@@ -12,7 +12,7 @@ window.KS_CATS.forEach(c => {
   const rows = window.KS_SHORTCUTS.filter(s => s.cat === c.id);
   html += `<section class="cat" id="${c.id}"><h2>${c.ikon} ${esc(c.ad)} <small>${rows.length}</small></h2><p>${esc(c.aciklama)}</p><div class="rows">` +
     rows.map(s => { const l = lessonBySc[s.id];
-      return `<article class="r card"><div>${renderShortcut(s)}</div><div><h3>${esc(s.ad)}${s.pop ? '<span class="pill pill-hot">⭐ önemli</span>' : ''}</h3><p>${esc(s.d)}${s.tr ? ` <span class="trn">🇹🇷 ${esc(s.tr)}</span>` : ''}</p></div>` + (l ? `<a class="try" href="ogren.html#${l.id}">Dene →</a>` : '<span></span>') + '</article>'; }).join('') + '</div></section>';
+      return `<article class="r card"><div>${renderShortcut(s)}</div><div><h3>${esc(s.ad)}${s.pop ? '<span class="pill pill-hot">⭐ önemli</span>' : ''}</h3><p>${esc(s.d)}${s.tr ? ` <span class="trn">🇹🇷 ${esc(s.tr)}</span>` : ''}</p></div>` + (l ? `<a class="try" href="ogren#${l.id}">Dene →</a>` : '<span></span>') + '</article>'; }).join('') + '</div></section>';
 });
 const f = path.join(dir, 'kisayollar.html');
 let s = fs.readFileSync(f, 'utf8');

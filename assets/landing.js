@@ -84,7 +84,7 @@
   document.addEventListener('keydown', e => {
     if (e.target.closest && e.target.closest('input,textarea,select')) return;
     if (e.key === 'Enter' && !e.metaKey && !e.ctrlKey && !e.altKey && !e.shiftKey) {
-      if (!e.target.closest('a,button,summary')) location.href = 'ogren.html';
+      if (!e.target.closest('a,button,summary')) location.href = 'ogren';
       return;
     }
     stopDemo();
@@ -106,7 +106,7 @@
       if ((e.metaKey || e.ctrlKey) && names.some(n => PREVENT.has(n))) e.preventDefault();
       showShortcut(hit, pressed);
     } else if (mods.length && !(mods.length === 1 && mods[0] === 'shift')) {
-      show(keyGroup(pressed), 'Bunu listemizde bulamadık 🤔', 'Belki bir uygulamaya özeldir. <a href="kisayollar.html">Tüm listeye</a> göz at.');
+      show(keyGroup(pressed), 'Bunu listemizde bulamadık 🤔', 'Belki bir uygulamaya özeldir. <a href="kisayollar">Tüm listeye</a> göz at.');
     } else {
       show(keyGroup(pressed), 'Bu sadece bir tuş 🙂', 'Bir kısayol dene: ⌘ ya da ⌥ ile birlikte bas.');
     }
@@ -151,7 +151,7 @@
   // ── Bölümler ───────────────────────────────────────
   $('#chapters').innerHTML = CH.map((c, i) => {
     const n = LS.filter(l => l.ch === c.id).length;
-    return `<a class="chap card" href="ogren.html#${c.id}"><span class="chap-n">${i + 1}</span><div><h3>${esc(c.ad)}</h3><p>${esc(c.alt)} · ${n} alıştırma</p></div></a>`;
+    return `<a class="chap card" href="ogren#${c.id}"><span class="chap-n">${i + 1}</span><div><h3>${esc(c.ad)}</h3><p>${esc(c.alt)} · ${n} alıştırma</p></div></a>`;
   }).join('');
 
   // ── LCD sayaç (görünür olunca) ─────────────────────
@@ -167,6 +167,15 @@
   if (reduceMotion()) lcd.textContent = '00:18.42';
   else new IntersectionObserver((ents, obs) => { if (ents[0].isIntersecting) { requestAnimationFrame(lcdLoop); obs.disconnect(); } }).observe(lcd);
 
+  // ── Speedrun liderleri (ilk 3) ─────────────────────
+  fetch('/api/scores').then(r => r.json()).then(d => {
+    if (!d.top || !d.top.length) return;
+    const mb = $('#miniBoard');
+    mb.innerHTML = '<li class="mb-h">🏆 Şu an en hızlılar · ' + d.players + ' kişi yarıştı</li>' + d.top.slice(0, 3).map((r, i) =>
+      `<li><span>${['🥇', '🥈', '🥉'][i]} ${esc(r.name)}</span><b>${(r.ms / 1000).toFixed(2).replace('.', ',')} sn</b></li>`).join('');
+    mb.hidden = false;
+  }).catch(() => {});
+
   // ── Canlı mini demo: ⌥⌫ ───────────────────────────
   const demo = $('#demo'), din = $('#demoInput'), dst = $('#demoStatus');
   din.addEventListener('focus', () => requestAnimationFrame(() => din.setSelectionRange(din.value.length, din.value.length)));
@@ -175,7 +184,7 @@
     if (matches(e, 'alt+delete')) {
       setTimeout(() => {
         demo.classList.add('ok'); beep(1320, .07);
-        dst.innerHTML = '✓ İşte böyle. Daha ' + (LS.length - 1) + ' tane var → <a href="ogren.html">Öğrenmeye başla</a>';
+        dst.innerHTML = '✓ İşte böyle. Daha ' + (LS.length - 1) + ' tane var → <a href="ogren">Öğrenmeye başla</a>';
       }, 0);
     } else if (e.key === 'Backspace' && !e.altKey && !e.metaKey) {
       dst.textContent = 'Harf harf değil, kelime kelime: ⌥ basılıyken ⌫ 😉';
@@ -184,7 +193,7 @@
 
   // ── Mac değilse: linki Mac’e gönder ────────────────
   if (!isMac()) {
-    $('#heroCta').innerHTML = '<button class="btn btn-primary" type="button" id="toMac">💻 Linki Mac’ime gönder</button><a class="btn" href="kisayollar.html">Listeye göz at</a><p class="note">Alıştırmalar Mac klavyesiyle çalışıyor. Telefondaysan linki kendine at, Mac’te aç.</p>';
+    $('#heroCta').innerHTML = '<button class="btn btn-primary" type="button" id="toMac">💻 Linki Mac’ime gönder</button><a class="btn" href="kisayollar">Listeye göz at</a><p class="note">Alıştırmalar Mac klavyesiyle çalışıyor. Telefondaysan linki kendine at, Mac’te aç.</p>';
     $('#toMac').addEventListener('click', sendToMac);
   }
 })();

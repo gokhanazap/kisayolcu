@@ -149,3 +149,8 @@
 .hero-cta .note { flex-basis: 100%; margin: 4px 0 0; font-size: 14px; color: var(--mute); }
 @media (max-width: 960px) { .how-grid { grid-template-columns: 1fr; } }
 @media (max-width: 560px) { .playground .kb { display: none; } .playground .pg-foot { display: none; } }
+
+.mini-board { list-style: none; padding: 0; margin: 26px 0 0; max-width: 360px; display: grid; gap: 6px; }
+.mini-board li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 12px; border-radius: 10px; background: rgba(255,255,255,.05); color: #d8d1c3; font-weight: 600; }
+.mini-board li b { font-family: var(--mono); color: var(--lcd); }
+.mini-board .mb-h { background: none; padding: 0 0 2px; font: 600 13px var(--mono); color: #9a9385; }

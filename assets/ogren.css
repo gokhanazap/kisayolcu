@@ -115,3 +115,6 @@
 .trylink { color: var(--accent-text); }
 .kbd-hint { font: 600 11px var(--mono); padding: 3px 6px; border-radius: 6px; background: var(--paper-2); color: var(--ink-2); }
 .paste-box { caret-color: transparent; }
+
+.nomac { padding: 16px 18px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; background: #fff1c9; border-color: #ecd9a8; }
+.auto-next { font-size: 14px; }

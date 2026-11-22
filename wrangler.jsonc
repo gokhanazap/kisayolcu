@@ -1,6 +1,8 @@
 {
   "name": "kisayolcu",
+  "main": "worker.js",
   "compatibility_date": "2026-11-01",
-  "assets": { "directory": "./public", "not_found_handling": "404-page" },
+  "assets": { "directory": "./public", "binding": "ASSETS", "not_found_handling": "404-page", "run_worker_first": ["/api/*"] },
+  "d1_databases": [{ "binding": "DB", "database_name": "kisayolcu", "database_id": "f15107a6-ed7f-4ce4-a0df-377c1c410f93" }],
   "routes": [{ "pattern": "kisayolcu.gokhanazap.com", "custom_domain": true }]
 }

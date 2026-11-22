@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Speedrun: Mac’i Ne Kadar Hızlı Kullanıyorsun? | Kısayolcu</title>
 <meta name="description" content="12 görev, sadece klavye. Fareye dokunursan +3 saniye. Süreni paylaş, arkadaşın geçebilsin bakalım.">
-<link rel="canonical" href="https://kisayolcu.gokhanazap.com/speedrun.html">
+<link rel="canonical" href="https://kisayolcu.gokhanazap.com/speedrun">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:site_name" content="Kısayolcu">
-<meta property="og:url" content="https://kisayolcu.gokhanazap.com/speedrun.html">
+<meta property="og:url" content="https://kisayolcu.gokhanazap.com/speedrun">
 <meta property="og:title" content="Speedrun: Mac’i Ne Kadar Hızlı Kullanıyorsun?">
 <meta property="og:description" content="12 görev, sadece klavye. Fareye dokunursan +3 saniye. Süreni paylaş, arkadaşın geçebilsin bakalım.">
 <meta property="og:image" content="https://kisayolcu.gokhanazap.com/assets/og-speedrun.png">
@@ -33,11 +33,11 @@
 <body class="dark">
 <header class="nav">
   <div class="wrap">
-    <a class="logo" href="index.html"><span class="logo-mark">⌘</span>kısayolcu</a>
+    <a class="logo" href="./"><span class="logo-mark">⌘</span>kısayolcu</a>
     <nav class="nav-links">
-      <a href="ogren.html" class="keep">Öğren</a>
-      <a href="speedrun.html" class="on keep">Speedrun</a>
-      <a href="kisayollar.html">Tüm kısayollar</a>
+      <a href="ogren" class="keep">Öğren</a>
+      <a href="speedrun" class="on keep">Speedrun</a>
+      <a href="kisayollar">Tüm kısayollar</a>
       <a href="#" data-contact class="coffee" aria-label="İletişime geç">✉️<span class="cl"> İletişim</span></a>
     </nav>
   </div>
@@ -54,6 +54,7 @@
       <li><span class="kbd-inline">esc</span> pas geç: <b>+10 sn</b></li>
       <li>Takılırsan 8 sn sonra ipucu gelir (🟨)</li>
     </ul>
+    <p class="best" id="rivalLine" hidden></p>
     <p class="best" id="bestLine"></p>
     <button class="btn btn-primary go" id="start" type="button">Başlamak için <kbd class="kc kc-mod"><span class="kc-s">↩</span><span class="kc-l">return</span></kbd></button>
   </section>
@@ -108,11 +109,27 @@
           <button class="btn" id="copy" type="button">Metni kopyala</button>
           <button class="btn btn-ghost" id="again" type="button">Tekrar <kbd class="kc kc-mod"><span class="kc-s">↩</span></kbd></button>
         </div>
+        <form class="lb-form" id="lbForm" autocomplete="off">
+          <label for="lbName">Sıralamaya gir:</label>
+          <input id="lbName" type="text" maxlength="20" placeholder="ismin ya da @kullanıcıadın" spellcheck="false">
+          <button class="btn btn-sm" id="lbBtn" type="submit">Kaydet ↩</button>
+        </form>
+        <p class="lb-msg" id="lbMsg" role="status"></p>
+        <button class="btn btn-ghost btn-sm" id="copyCard" type="button">📋 Kartı kopyala</button>
         <button class="btn btn-ghost btn-sm" id="download" type="button">⬇︎ Kartı indir (PNG)</button>
         <p class="tip">🟩 temiz · 🟨 ipucuyla · 🟥 pas</p>
         <div class="missed" id="missed"></div>
       </div>
     </div>
+  </section>
+  <!-- LİDERLİK TABLOSU -->
+  <section class="board-wrap" id="boardWrap" hidden>
+    <div class="board-head">
+      <h2 class="h-display">🏆 En hızlılar</h2>
+      <span class="muted" id="boardMeta"></span>
+    </div>
+    <ol class="board" id="board"></ol>
+    <button class="btn btn-ghost btn-sm" id="boardMore" type="button" hidden>İlk 50’yi göster</button>
   </section>
 </main>
 
@@ -120,9 +137,9 @@
   <div class="wrap">
     <span class="maker"><b>kısayolcu</b> · Yapan: <a href="https://x.com/gokhanazap0" target="_blank" rel="noopener">Gökhan Azap</a> · Kaynak: <a href="https://support.apple.com/tr-tr/102650" target="_blank" rel="noopener">Apple Destek ↗</a></span>
     <span class="foot-links">
-      <a href="ogren.html">Öğren</a>
-      <a href="speedrun.html">Speedrun</a>
-      <a href="kisayollar.html">Tüm kısayollar</a>
+      <a href="ogren">Öğren</a>
+      <a href="speedrun">Speedrun</a>
+      <a href="kisayollar">Tüm kısayollar</a>
       <a href="#" data-contact>İletişim</a>
     </span>
   </div>
