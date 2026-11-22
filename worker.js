@@ -71,7 +71,7 @@ export default {
         const ck = new Request(url.origin + '/api/scores');
         let res = await caches.default.match(ck);
         if (!res) {
-          res = json(await top(env.DB), 200, { 'cache-control': 'public, max-age=5, s-maxage=20' });
+          res = json(await top(env.DB), 200, { 'cache-control': 'public, max-age=0, s-maxage=10' });
           ctx.waitUntil(caches.default.put(ck, res.clone()));
         }
         return res;

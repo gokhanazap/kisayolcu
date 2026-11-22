@@ -265,7 +265,7 @@
   }
   let boardAll = false, boardData = null;
   function loadBoard() {
-    fetch('/api/scores').then(r => r.json()).then(d => { boardData = d; renderBoard(d, store.get('name', '')); if (location.hash === '#board' && state === 'intro') focusBoard(); }).catch(() => { $('boardWrap').hidden = true; });
+    window.KS.getBoard().then(d => { boardData = d; renderBoard(d, store.get('name', '')); if (location.hash === '#board' && state === 'intro') focusBoard(); });
   }
   function focusBoard() {
     if (!boardData || state === 'run' || state === 'count') return;

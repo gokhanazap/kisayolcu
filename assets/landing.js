@@ -180,7 +180,7 @@
   else new IntersectionObserver((ents, obs) => { if (ents[0].isIntersecting) { requestAnimationFrame(lcdLoop); obs.disconnect(); } }).observe(lcd);
 
   // ── Speedrun liderleri (ilk 3) ─────────────────────
-  fetch('/api/scores').then(r => r.json()).then(d => {
+  window.KS.getBoard().then(d => {
     if (!d.top || !d.top.length) return;
     const mb = $('#miniBoard');
     mb.innerHTML = '<li class="mb-h">' + t('🏆 Şu an en hızlılar · {n} kişi yarıştı', { n: d.players }) + '</li>' + d.top.slice(0, 3).map((r, i) =>
